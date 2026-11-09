@@ -2,20 +2,21 @@
 
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
 [![Framework Streamlit](https://img.shields.io/badge/Framework-Streamlit-FF4B4B.svg)](https://streamlit.io/)
-[![IBM Granite Ready](https://img.shields.io/badge/IBM%20Granite-watsonx.ai%20Ready-054ADA.svg)](https://www.ibm.com/granite)
+[![Edunet Foundation Internship](https://img.shields.io/badge/Internship-Edunet%20Foundation-blueviolet.svg)](https://edunetfoundation.org/)
+[![Learning Focus IBM watsonx.ai](https://img.shields.io/badge/Learning%20Focus-IBM%20watsonx.ai%20%26%20Cloud-054ADA.svg)](https://www.ibm.com/watsonx)
 [![Retrieval scikit-learn](https://img.shields.io/badge/RAG-TF--IDF%20%2B%20Cosine-orange.svg)](https://scikit-learn.org/)
 [![License MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Hackathon Problem Statement](https://img.shields.io/badge/IBM%20Hackathon-Problem%20Statement%20%239-purple.svg)](https://github.com/syeedarshad/Smart-Farming-AI-Agent)
 
-**Smart Farming AI** is a multilingual agricultural advisory system engineered to empower Indian farmers with localized, stage-by-stage crop lifecycle guidance, sustainable natural farming practices, integrated pest management, disaster safety protocols, and market price estimates.
+**Smart Farming AI** is a multilingual agricultural advisory system developed as an internship project assigned by **Edunet Foundation**. The project represents a practical learning and development initiative focused on exploring **IBM watsonx.ai and IBM Cloud** technologies and applying artificial intelligence to real-world Indian agricultural use cases.
 
-Built for the **IBM Smart Farming AI Hackathon (Problem Statement No. 9)**, the application combines a grounded **Retrieval-Augmented Generation (RAG)** pipeline with complete UI localization in **English**, **Tamil (தமிழ்)**, **Telugu (తెలుగు)**, and **Hindi (हिंदी)**. It operates out of the box in **Demo Mode** using a verified offline agricultural knowledge base and includes built-in architecture for live cloud inference via **IBM Granite** on **watsonx.ai**.
+The application combines a grounded **Retrieval-Augmented Generation (RAG)** pipeline with complete user interface localization in **English**, **Tamil (தமிழ்)**, **Telugu (తెలుగు)**, and **Hindi (हिंदी)**. It operates out of the box in **Demo Mode** using a verified offline agricultural knowledge base and includes built-in architecture for live cloud inference via **IBM Granite** on **watsonx.ai**.
 
 ---
 
 ## Table of Contents
 
 - [Project Overview](#project-overview)
+- [Internship Project](#internship-project)
 - [Key Features](#key-features)
 - [Application Screenshots](#application-screenshots)
 - [Technology Stack](#technology-stack)
@@ -52,6 +53,22 @@ Indian agriculture supports hundreds of millions of livelihoods across diverse a
 
 ---
 
+## Internship Project
+
+### Background & Objective
+This application was developed as a practical internship assignment from **Edunet Foundation** as part of a technical learning and development program focused on **IBM watsonx.ai and IBM Cloud**.
+
+The core objective of the internship was to gain hands-on, end-to-end experience in modern cloud and AI architectures by building a production-grade, socially impactful application. Key learning areas include:
+
+- **IBM AI & Cloud Ecosystem:** Understanding IBM watsonx.ai foundation models, API authentication via IBM Cloud IAM OAuth2 client flows, and token caching mechanisms.
+- **Retrieval-Augmented Generation (RAG):** Implementing a grounded knowledge retrieval pipeline that anchors LLM generation strictly to domain-verified agricultural data.
+- **Multilingual Engineering:** Building an accessible, multi-lingual frontend tailored for regional diversity across Indian farming states.
+- **Responsible AI Principles:** Enforcing zero-hallucination constraints, safety card overrides, transparent demo mode labeling, and honest disclosure of live cloud connectivity status.
+
+> **Educational Disclaimer:** This application is an educational internship submission developed under the academic framework of Edunet Foundation. IBM watsonx.ai and IBM Cloud are the learning technologies used; IBM does not officially own, sponsor, endorse, or certify this specific repository.
+
+---
+
 ## Key Features
 
 | Capability | Description |
@@ -72,31 +89,61 @@ Indian agriculture supports hundreds of millions of livelihoods across diverse a
 
 The application supports four Indian languages and provides fully localized farming guidance, state-aware crop discovery, lifecycle roadmaps, and emergency advisories.
 
-### English Interface
+### Multilingual Interfaces
+
+#### English Interface
 ![English Interface](assets/screenshots/english/dashboard.png)
-
-*English interface displaying the location-personalized dashboard, farming modules, and crop advisory tools.*
-
----
-
-### தமிழ் Interface
-![தமிழ் Interface](assets/screenshots/tamil/dashboard.png)
-
-*தமிழ் (Tamil) interface showing localized agricultural terms, seasonal crop mappings, and natural farming guidance.*
+*English landing dashboard displaying localized greeting, farm location setup, and agricultural quick-action modules.*
 
 ---
 
-### తెలుగు Interface
-![తెలుగు Interface](assets/screenshots/telugu/dashboard.png)
-
-*తెలుగు (Telugu) interface presenting localized crop roadmaps, soil management advice, and safety alerts.*
+#### தமிழ் (Tamil) Interface
+![Tamil Interface](assets/screenshots/tamil/dashboard.png)
+*தமிழ் (Tamil) interface showing localized agricultural terminology, language selector, and Tamil agronomic guidance.*
 
 ---
 
-### हिंदी Interface
-![हिंदी Interface](assets/screenshots/hindi/dashboard.png)
+#### తెలుగు (Telugu) Interface
+![Telugu Interface](assets/screenshots/telugu/dashboard.png)
+*తెలుగు (Telugu) interface displaying native Telugu navigation, farm guidance tools, and localized safety notices.*
 
-*हिंदी (Hindi) interface providing Hindi-language farming assistance, pest management recommendations, and market insights.*
+---
+
+#### हिंदी (Hindi) Interface
+![Hindi Interface](assets/screenshots/hindi/dashboard.png)
+*हिंदी (Hindi) interface presenting Devanagari navigation, regional farming assistance, and crop planning guidance.*
+
+---
+
+### Core Functional Modules
+
+#### AI Farming Assistant
+![AI Farming Assistant](assets/screenshots/english/ai_assistant.png)
+*Grounded RAG assistant providing crop-specific answers anchored in retrieved knowledge chunks with source citations.*
+
+---
+
+#### Crop Explorer
+![Crop Explorer](assets/screenshots/english/crop_explorer.png)
+*Interactive crop catalogue filtering 25+ crops by agro-climatic region, season, soil type, and irrigation requirements.*
+
+---
+
+#### Crop Lifecycle Roadmap
+![Crop Roadmap](assets/screenshots/english/crop_roadmap.png)
+*12-stage sequential crop lifecycle roadmap detailing activities from land preparation through post-harvest storage.*
+
+---
+
+#### Natural Farming Guide
+![Natural Farming](assets/screenshots/english/natural_farming.png)
+*Sustainable organic formulations including Farmyard Manure (FYM), Jeevamrutha, neem sprays, and soil health practices.*
+
+---
+
+#### Integrated Pest Management (IPM)
+![Pest Management](assets/screenshots/english/pest_management.png)
+*Pest and disease diagnosis cards emphasizing symptoms, economic thresholds, cultural/biological controls, and safety precautions.*
 
 ---
 
@@ -187,9 +234,18 @@ smart-farming-ai/
 ├── assets/                             # Visual media and interface documentation
 │   └── screenshots/
 │       ├── english/                    # English UI captures
+│       │   ├── dashboard.png           # Landing dashboard
+│       │   ├── ai_assistant.png        # RAG Assistant interface
+│       │   ├── crop_explorer.png       # Crop Explorer catalogue
+│       │   ├── crop_roadmap.png        # 12-stage crop roadmap
+│       │   ├── natural_farming.png     # Organic formulation guide
+│       │   └── pest_management.png     # IPM diagnosis view
 │       ├── tamil/                      # Tamil (தமிழ்) UI captures
+│       │   └── dashboard.png           # Localized Tamil interface
 │       ├── telugu/                     # Telugu (తెలుగు) UI captures
+│       │   └── dashboard.png           # Localized Telugu interface
 │       └── hindi/                      # Hindi (हिंदी) UI captures
+│           └── dashboard.png           # Localized Hindi interface
 │
 ├── data/                               # Domain knowledge base (curated JSON files)
 │   ├── crops.json                      # 25+ detailed crop profiles and agronomic metrics
@@ -443,10 +499,11 @@ The system follows strict Responsible AI guidelines tailored for high-stakes rur
 
 ## Acknowledgements
 
-- **IBM Smart Farming AI Hackathon:** Developed for Problem Statement No. 9.
+- **Edunet Foundation:** For assigning this practical internship project, structuring the learning objectives, and providing mentorship in enterprise AI and cloud technologies.
+- **IBM Cloud & watsonx.ai Ecosystem:** For the cloud infrastructure and foundation model capabilities that formed the technical learning focus of this internship.
 - **Open Data & Knowledge Sources:** ICAR, IMD Agromet, NDMA SACHET, AGMARKNET, and Department of Agriculture & Farmers Welfare.
-- **Open Source Ecosystem:** Streamlit, Scikit-learn, Pandas, Plotly, and Python community contributors.
+- **Open Source Community:** Streamlit, Scikit-learn, Pandas, Plotly, and the Python open-source community.
 
 ---
 
-*Smart Farming AI – Empowering Indian agriculture with localized, grounded, and responsible intelligence.*
+*Smart Farming AI – Practical Internship Project by Edunet Foundation, exploring IBM watsonx.ai & Cloud for Indian agriculture.*
