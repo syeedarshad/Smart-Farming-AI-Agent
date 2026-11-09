@@ -1,0 +1,167 @@
+{
+  "_note": "Natural farming practices guidance based on ICAR, NITI Aayog Natural Farming Toolkit and KVK resources. Effectiveness and suitability vary by region, soil, crop and season. Validate with your local agricultural officer before adopting any new practice. 'Natural' does not automatically mean safe—follow all precautions.",
+  "practices": [
+    {
+      "id": "compost",
+      "name": {"en": "Compost", "ta": "உரக் குழி உரம்", "te": "కంపోస్ట్", "hi": "कम्पोस्ट"},
+      "category": "soil_amendment",
+      "description": "Compost is decomposed organic matter produced by aerobic breakdown of crop residues, kitchen waste, animal dung and other biomass. It improves soil structure, water-holding capacity, microbial activity and supplies nutrients slowly.",
+      "preparation": [
+        "Dig a compost pit (3m × 1.5m × 1m) or use an above-ground heap.",
+        "Alternate layers: dry crop residue (15 cm) → animal dung (5 cm) → soil (5 cm) → vegetable/kitchen waste.",
+        "Maintain moisture by watering lightly. The pile should feel damp but not dripping.",
+        "Turn the pile every 15 days to aerate and speed decomposition.",
+        "Mature compost is dark brown, crumbly and smells earthy—ready in 60–90 days."
+      ],
+      "application": "Apply 5–10 tonnes/ha before ploughing and incorporate into the top 15–20 cm of soil.",
+      "benefits": ["Improves soil structure and aeration.", "Increases water retention in sandy soils.", "Supplies micronutrients and stimulates microbial activity.", "Reduces requirement for chemical fertilisers."],
+      "precautions": ["Use only well-matured compost—immature compost can harm roots and introduce plant pathogens.", "Do not use compost containing diseased plant material or non-biodegradable waste.", "Compost made with chemically treated crop residues may retain pesticide residues."],
+      "suitable_crops": ["rice", "wheat", "maize", "vegetables", "sugarcane", "all crops"]
+    },
+    {
+      "id": "farmyard_manure",
+      "name": {"en": "Farmyard Manure (FYM)", "ta": "கொட்டில் உரம்", "te": "పశువుల ఎరువు", "hi": "गोबर की खाद"},
+      "category": "soil_amendment",
+      "description": "Farmyard manure is a mixture of animal dung, urine, feed residues and bedding material from cattle sheds. It is one of the most traditional and effective organic soil amendments used in Indian farming.",
+      "preparation": [
+        "Collect cattle dung and urine-soaked straw daily from the shed.",
+        "Heap in a covered pit away from sun and rain to prevent nutrient loss.",
+        "Allow to decompose for 3–6 months until the mass turns dark and crumbly.",
+        "Well-rotted FYM has less odour and a higher nutrient value than fresh dung."
+      ],
+      "application": "Apply 5–15 tonnes/ha during land preparation; incorporate well. Use higher rates for vegetable crops.",
+      "benefits": ["Balanced slow-release supply of nitrogen, phosphorus and potassium.", "Improves soil biology, root penetration and water retention.", "Reduces soil crusting in heavy clay soils.", "Economically produced on-farm from available cattle."],
+      "precautions": ["Never apply fresh cow dung directly—it can burn roots and carry weed seeds, human pathogens and flies.", "Well-composted FYM gives better results than fresh application.", "FYM from cattle fed on treated forage may contain antibiotic or hormone residues."],
+      "suitable_crops": ["all crops"]
+    },
+    {
+      "id": "vermicompost",
+      "name": {"en": "Vermicompost", "ta": "மண்புழு உரம்", "te": "వర్మీకంపోస్ట్", "hi": "वर्मीकम्पोस्ट"},
+      "category": "soil_amendment",
+      "description": "Vermicompost is compost produced by earthworms (Eisenia fetida, Lumbricus rubellus) digesting organic matter. It has a finer texture and higher biological activity than regular compost.",
+      "preparation": [
+        "Build a vermibed (1m × 2m × 0.5m) with shade and drainage.",
+        "Add pre-composted organic matter (mix of cow dung and crop residues) as bedding.",
+        "Introduce earthworms at 1–2 kg per square metre of bed area.",
+        "Maintain moisture at 60–70% and temperature at 20–35°C—keep shaded.",
+        "Harvest after 45–60 days by separating worms from finished compost."
+      ],
+      "application": "Apply 2–4 tonnes/ha or use 200–400 g per pit for transplanted vegetable crops.",
+      "benefits": ["Very high microbial diversity—stimulates soil biology.", "Better nutrient bioavailability than regular compost.", "Improves root development and crop quality.", "Can be produced on small plots—suitable for small farmers."],
+      "precautions": ["Protect beds from ants, birds and predators that eat earthworms.", "Avoid adding citrus, onion peel or very salty material—toxic to worms.", "Do not apply chemical pesticides near vermibed."],
+      "suitable_crops": ["vegetables", "flowers", "fruit crops", "nursery", "any crop"]
+    },
+    {
+      "id": "green_manure",
+      "name": {"en": "Green Manure", "ta": "பசுந்தாள் உரம்", "te": "పచ్చిరొట్ట ఎరువు", "hi": "हरी खाद"},
+      "category": "soil_amendment",
+      "description": "Green manure involves growing a legume crop and incorporating it into the soil while it is still green, before sowing the main crop. It adds nitrogen (from nodule fixation), organic matter and improves soil structure.",
+      "preparation": [
+        "Sow Sesbania (dhaincha), Sunnhemp (crotalaria) or cowpea 45–60 days before the main crop.",
+        "Allow it to grow to flowering stage.",
+        "Plough it into the soil (10–12 cm depth) when the soil has adequate moisture.",
+        "Allow 2–3 weeks for decomposition before sowing the main crop."
+      ],
+      "application": "In-situ incorporation at 20–30 days before transplanting main crop.",
+      "benefits": ["Adds 60–100 kg nitrogen per ha, reducing fertiliser cost.", "Improves organic carbon and soil structure.", "Suppresses weeds during the green manure growth period.", "Especially valuable before rice transplanting."],
+      "precautions": ["Do not use diseased plants for green manuring.", "Incorporate before seed set to prevent it from becoming a weed.", "In areas with water scarcity, green manure competes for limited water."],
+      "suitable_crops": ["rice", "sugarcane", "cotton", "maize"]
+    },
+    {
+      "id": "neem_products",
+      "name": {"en": "Neem-Based Products", "ta": "வேப்ப மர பொருட்கள்", "te": "వేప ఉత్పత్తులు", "hi": "नीम आधारित उत्पाद"},
+      "category": "ipm_organic",
+      "description": "Neem (Azadirachta indica) products—neem oil, neem cake and neem leaf extract—are widely used in Indian agriculture as soil amendments, insect deterrents and fungal suppressants. They are NOT a guaranteed replacement for all pest management.",
+      "preparation": [
+        "Neem oil spray: mix 3–5 ml neem oil + 1 ml liquid soap per litre of water. Stir well and spray within 8 hours.",
+        "Neem cake: directly apply as soil amendment at transplanting.",
+        "Neem leaf extract: soak 1 kg neem leaves in 10 litres water overnight; strain and dilute 1:5 before foliar spray."
+      ],
+      "application": "Neem oil: spray in early morning or evening to avoid photo-degradation. Neem cake: 200–250 kg/ha as soil incorporation.",
+      "benefits": ["Acts as antifeedant against many sucking pests.", "Neem cake provides nitrogen and has nematicidal effect.", "Reduces oviposition (egg-laying) by some insects.", "Biodegradable and non-persistent in environment."],
+      "precautions": ["Neem products are IRRITANTS—wear gloves and avoid contact with eyes during preparation and application.", "Do not use near water bodies as neem oil is toxic to aquatic organisms.", "Neem oil degrades rapidly in sunlight—spray in early morning or late evening only.", "Not effective against all pest species—identify the pest correctly before applying.", "Commercial neem products vary widely in azadirachtin concentration—use certified products."],
+      "suitable_crops": ["vegetables", "rice", "cotton", "pulses", "fruit crops"]
+    },
+    {
+      "id": "mulching",
+      "name": {"en": "Mulching", "ta": "மல்ச்சிங்", "te": "మల్చింగ్", "hi": "मल्चिंग"},
+      "category": "soil_management",
+      "description": "Mulching involves covering the soil surface around crops with organic material (straw, leaves, crop residues) or plastic film to conserve moisture, regulate soil temperature, suppress weeds and reduce erosion.",
+      "preparation": [
+        "Organic mulch: spread 5–10 cm thick layer of dry straw, paddy husk, sugarcane trash or dry leaves around crop roots.",
+        "Plastic mulch: lay black or silver HDPE plastic film over ridges before transplanting; make holes for planting."
+      ],
+      "application": "Apply organic mulch soon after planting or after first irrigation. Plastic mulch is laid before transplanting.",
+      "benefits": ["Reduces water requirement by 30–40% compared to bare soil.", "Keeps soil cooler in summer and warmer in winter.", "Suppresses weed growth significantly.", "Reduces soil erosion during heavy rain.", "Organic mulch gradually decomposes and adds organic matter."],
+      "precautions": ["Thick organic mulch kept too close to the stem can cause stem rot—maintain 5–8 cm gap around stem.", "Do not use diseased crop material as mulch—it spreads pathogens.", "Plastic mulch is not biodegradable—remove and dispose safely after use."],
+      "suitable_crops": ["vegetables", "ginger", "turmeric", "strawberry", "banana", "cotton"]
+    },
+    {
+      "id": "crop_rotation",
+      "name": {"en": "Crop Rotation", "ta": "பயிர் சுழற்சி", "te": "పంట మార్పిడి", "hi": "फसल चक्र"},
+      "category": "soil_management",
+      "description": "Crop rotation is the practice of growing different crops in a planned sequence on the same plot in successive seasons. It breaks pest and disease cycles, improves soil fertility and reduces input costs.",
+      "examples": [
+        "Rice → Wheat → Moong (legume) — breaks monoculture cycle in Indo-Gangetic plains",
+        "Cotton → Sorghum → Chickpea — reduces soil-borne diseases in black cotton soil areas",
+        "Tomato → Maize → Legume — breaks nematode and fungal build-up in vegetable fields",
+        "Groundnut → Rice → Green gram — nitrogen-fixing legume improves soil for rice"
+      ],
+      "benefits": ["Reduces soil-borne pest and disease build-up by 30–50% over time.", "Legumes in rotation add 60–120 kg nitrogen/ha per season.", "Improves organic carbon and soil biodiversity.", "Reduces dependency on pesticides and fertilisers over time."],
+      "precautions": ["Do not rotate crops within the same plant family—diseases and pests are often family-specific.", "Plan rotations based on local market demand and agro-climatic fit.", "Some crops (e.g., cotton) have long residual effects on soil; plan accordingly."],
+      "suitable_crops": ["all crops"]
+    },
+    {
+      "id": "soil_testing",
+      "name": {"en": "Soil Testing", "ta": "மண் பரிசோதனை", "te": "నేల పరీక్ష", "hi": "मिट्टी परीक्षण"},
+      "category": "soil_management",
+      "description": "Soil testing is the scientific analysis of soil samples to determine nutrient content, pH, salinity and organic matter. It is the foundation of rational fertiliser management.",
+      "how_to": [
+        "Collect samples from 8–10 points across the field using a clean trowel or auger.",
+        "Collect from 0–15 cm depth (surface) and optionally 15–30 cm (sub-surface).",
+        "Mix all samples from the same field; take 500g composite sample.",
+        "Label the sample bag clearly with: farmer name, village, field name, crop, season.",
+        "Submit to nearest Soil Testing Laboratory (STL), KVK or government agriculture department centre.",
+        "Test for: pH, organic carbon, available N, P, K, sulphur, zinc and boron.",
+        "Use the Soil Health Card results to calculate fertiliser requirement."
+      ],
+      "benefits": ["Identifies actual nutrient deficiencies—avoids both under- and over-fertilisation.", "Can reduce fertiliser cost by 15–30% with targeted application.", "Identifies salinity or alkalinity problems early.", "Government Soil Health Card scheme provides free testing at STLs."],
+      "precautions": ["Collect samples when soil moisture is at field capacity—not too dry or too wet.", "Do not collect from recently fertilised spots, near bunds or compost heaps.", "Test results are specific to that sample location—one test covers one field only."],
+      "suitable_crops": ["all crops"]
+    },
+    {
+      "id": "organic_matter_improvement",
+      "name": {"en": "Organic Matter Improvement", "ta": "கரிம பொருள் மேம்பாடு", "te": "సేంద్రీయ పదార్థం మెరుగుదల", "hi": "जैविक कार्बन सुधार"},
+      "category": "soil_management",
+      "description": "Indian agricultural soils are critically low in organic carbon (national average <0.5%). Building soil organic matter is the most important long-term investment for sustainable farming.",
+      "methods": [
+        "Regular application of compost, FYM or vermicompost.",
+        "Incorporation of crop residues instead of burning.",
+        "Green manuring with legumes before main crop.",
+        "Minimum tillage to reduce organic matter oxidation.",
+        "Planting cover crops (dhaincha, cowpea) in fallow periods.",
+        "Agroforestry: planting trees on bunds reduces erosion and adds leaf litter."
+      ],
+      "benefits": ["Higher organic carbon improves water retention, aeration and cation exchange capacity.", "Improves nutrient retention and availability.", "Supports beneficial soil microorganisms.", "Carbon-rich soils are more resilient to drought and waterlogging."],
+      "precautions": ["Building organic matter takes 3–5+ years of consistent effort.", "Do not expect immediate yield increases—treat as a long-term investment.", "Burning crop residues destroys organic matter and is counterproductive."],
+      "suitable_crops": ["all crops"]
+    },
+    {
+      "id": "biological_pest_management",
+      "name": {"en": "Biological Pest Management", "ta": "உயிரியல் பூச்சி மேலாண்மை", "te": "జీవ పురుగు నిర్వహణ", "hi": "जैविक कीट प्रबंधन"},
+      "category": "ipm_organic",
+      "description": "Biological pest management uses living organisms—beneficial insects, parasitoids, predators and microbial agents—to reduce pest populations. It is a core component of Integrated Pest Management (IPM).",
+      "methods": [
+        "Trichogramma cards: egg parasitoid wasps that destroy bollworm/stem borer eggs—release at 1.5 lakh eggs/ha at pest egg-laying stage.",
+        "Chrysoperla (lacewing): predatory insect larvae that eat aphids, mites, mealybugs—release at 50,000 eggs/ha.",
+        "Trichoderma viride/harzianum: fungal bioagent applied as soil drench or seed treatment to suppress root rot, wilt and damping-off.",
+        "Beauveria bassiana: entomopathogenic fungus that kills whitefly, thrips and aphids—spray as commercial formulation.",
+        "NPV (Nuclear Polyhedrosis Virus): specific to Helicoverpa (fruit borer, bollworm)—spray at 250 LE/ha during evening.",
+        "Predatory mites: release Phytoseiulus persimilis to control spider mites in greenhouse crops."
+      ],
+      "benefits": ["Specific to target pest—does not harm natural enemies or pollinators.", "No residue concerns—safe re-entry interval.", "Reduces chemical pesticide use.", "Builds long-term resilience by maintaining beneficial insect populations."],
+      "precautions": ["Bioagents must be stored correctly (cold chain for most)—check product label for storage temperature.", "Bioagents are living organisms—do not apply chemical pesticides for 2–3 days before or after biological agents.", "NPV is species-specific—confirm pest species before purchasing.", "Results may be slower than chemical control in high pest pressure situations—monitor closely."],
+      "suitable_crops": ["cotton", "tomato", "chilli", "rice", "vegetables", "fruit crops"]
+    }
+  ]
+}

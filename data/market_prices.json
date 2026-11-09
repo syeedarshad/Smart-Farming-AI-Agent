@@ -1,0 +1,143 @@
+{
+  "_disclaimer": "IMPORTANT: All prices shown in this module are APPROXIMATE ILLUSTRATIVE RANGES only. They are based on general historical patterns and publicly available information. They are NOT real-time mandi prices. Actual prices vary significantly by mandi location, crop variety, quality grade, moisture content, arrivals volume and date. Always check current prices at your nearest AGMARKNET portal (agmarknet.nic.in), e-NAM platform (enam.gov.in) or local mandi. Never make purchase or sales decisions based solely on the prices shown here.",
+  "_data_note": "This module is designed for future integration with AGMARKNET or e-NAM APIs. When live API credentials are configured, these static illustrative prices will be replaced by real market data.",
+  "_reference_period": "Illustrative ranges reflect broad seasonal patterns; prices were last reviewed for general calibration in 2023-2024. Market conditions change continuously.",
+  "commodities": [
+    {
+      "commodity_id": "rice",
+      "commodity_name": {"en": "Rice (Paddy)", "ta": "நெல்", "te": "వరి", "hi": "धान"},
+      "unit": "₹ per quintal",
+      "markets": [
+        {"region": "Andhra Pradesh / Telangana", "min": 1800, "max": 2400, "modal": 2100, "grade_note": "Common grade paddy; MSP reference ~₹2183/quintal (2023-24)"},
+        {"region": "Tamil Nadu", "min": 1900, "max": 2500, "modal": 2200, "grade_note": "Samba/Ponni variety commands premium"},
+        {"region": "West Bengal / Odisha", "min": 1750, "max": 2300, "modal": 2000, "grade_note": "Common paddy"},
+        {"region": "Punjab / Haryana", "min": 1800, "max": 2300, "modal": 2100, "grade_note": "PR varieties; procurement at MSP common"}
+      ]
+    },
+    {
+      "commodity_id": "wheat",
+      "commodity_name": {"en": "Wheat", "ta": "கோதுமை", "te": "గోధుమ", "hi": "गेहूं"},
+      "unit": "₹ per quintal",
+      "markets": [
+        {"region": "Punjab / Haryana", "min": 2015, "max": 2400, "modal": 2200, "grade_note": "MSP reference ~₹2275/quintal (2023-24); procurement at MSP common"},
+        {"region": "Uttar Pradesh", "min": 2000, "max": 2350, "modal": 2150, "grade_note": "Common wheat"},
+        {"region": "Madhya Pradesh / Rajasthan", "min": 1950, "max": 2300, "modal": 2100, "grade_note": "Fair average quality"}
+      ]
+    },
+    {
+      "commodity_id": "maize",
+      "commodity_name": {"en": "Maize", "ta": "மக்காச்சோளம்", "te": "మొక్కజొన్న", "hi": "मक्का"},
+      "unit": "₹ per quintal",
+      "markets": [
+        {"region": "Karnataka / Andhra Pradesh", "min": 1500, "max": 2200, "modal": 1800, "grade_note": "MSP reference ~₹2090/quintal (2023-24)"},
+        {"region": "Bihar / Uttar Pradesh", "min": 1400, "max": 2000, "modal": 1700, "grade_note": "Common yellow maize"},
+        {"region": "Rajasthan / Madhya Pradesh", "min": 1450, "max": 2100, "modal": 1750, "grade_note": "Common yellow maize"}
+      ]
+    },
+    {
+      "commodity_id": "chickpea",
+      "commodity_name": {"en": "Chickpea (Gram)", "ta": "கொண்டைக்கடலை", "te": "శనగలు", "hi": "चना"},
+      "unit": "₹ per quintal",
+      "markets": [
+        {"region": "Madhya Pradesh / Rajasthan", "min": 4500, "max": 5800, "modal": 5200, "grade_note": "MSP reference ~₹5440/quintal (2023-24)"},
+        {"region": "Maharashtra", "min": 4800, "max": 6000, "modal": 5400, "grade_note": "Desi gram"},
+        {"region": "Andhra Pradesh / Karnataka", "min": 4600, "max": 5700, "modal": 5100, "grade_note": "Desi gram"}
+      ]
+    },
+    {
+      "commodity_id": "groundnut",
+      "commodity_name": {"en": "Groundnut", "ta": "வேர்க்கடலை", "te": "వేరుశనగ", "hi": "मूंगफली"},
+      "unit": "₹ per quintal",
+      "markets": [
+        {"region": "Gujarat (Rajkot mandi)", "min": 5000, "max": 7500, "modal": 6200, "grade_note": "Shelled; MSP ref ~₹6783/quintal (2023-24)"},
+        {"region": "Andhra Pradesh (Guntur mandi)", "min": 4800, "max": 7000, "modal": 5800, "grade_note": "Unshelled pods; prices highly seasonal"},
+        {"region": "Tamil Nadu (Coimbatore/Salem)", "min": 5200, "max": 7200, "modal": 6000, "grade_note": "Unshelled; quality premium for bold varieties"}
+      ]
+    },
+    {
+      "commodity_id": "soybean",
+      "commodity_name": {"en": "Soybean", "ta": "சோயா பீன்", "te": "సోయాబీన్", "hi": "सोयाबीन"},
+      "unit": "₹ per quintal",
+      "markets": [
+        {"region": "Madhya Pradesh / Maharashtra", "min": 3800, "max": 5500, "modal": 4600, "grade_note": "MSP reference ~₹4600/quintal (2023-24)"},
+        {"region": "Rajasthan", "min": 3700, "max": 5300, "modal": 4500, "grade_note": "Common grade"}
+      ]
+    },
+    {
+      "commodity_id": "cotton",
+      "commodity_name": {"en": "Cotton (Kapas)", "ta": "பருத்தி", "te": "పత్తి", "hi": "कपास"},
+      "unit": "₹ per quintal",
+      "markets": [
+        {"region": "Maharashtra (Yavatmal / Amravati)", "min": 5500, "max": 7800, "modal": 6500, "grade_note": "Medium staple; MSP Long: ~₹7020, Medium: ~₹6620 (2023-24)"},
+        {"region": "Gujarat (Rajkot / Surendranagar)", "min": 5800, "max": 8000, "modal": 6700, "grade_note": "Long staple; premium over medium staple"},
+        {"region": "Andhra Pradesh / Telangana", "min": 5600, "max": 7500, "modal": 6400, "grade_note": "Medium staple"}
+      ]
+    },
+    {
+      "commodity_id": "onion",
+      "commodity_name": {"en": "Onion", "ta": "வெங்காயம்", "te": "ఉల్లిపాయ", "hi": "प्याज"},
+      "unit": "₹ per quintal",
+      "markets": [
+        {"region": "Maharashtra (Nashik / Lasalgaon)", "min": 400, "max": 4000, "modal": 1200, "grade_note": "Prices are HIGHLY volatile—range is wide across seasons. Lasalgaon is Asia's largest onion market."},
+        {"region": "Karnataka (Bangalore mandi)", "min": 500, "max": 3500, "modal": 1400, "grade_note": "Mixed grade"},
+        {"region": "Tamil Nadu (Mettur / Salem)", "min": 600, "max": 3800, "modal": 1500, "grade_note": "Rabi onion; varies significantly by season"}
+      ]
+    },
+    {
+      "commodity_id": "tomato",
+      "commodity_name": {"en": "Tomato", "ta": "தக்காளி", "te": "టమోట", "hi": "टमाटर"},
+      "unit": "₹ per quintal",
+      "markets": [
+        {"region": "Andhra Pradesh (Madanapalle)", "min": 200, "max": 5000, "modal": 1000, "grade_note": "Prices are EXTREMELY volatile. Madanapalle is India's major tomato trading hub."},
+        {"region": "Karnataka (Kolar)", "min": 300, "max": 4500, "modal": 1100, "grade_note": "Major production zone"},
+        {"region": "Maharashtra (Pune Subzi Mandi)", "min": 400, "max": 4800, "modal": 1200, "grade_note": "Consumption centre prices"}
+      ]
+    },
+    {
+      "commodity_id": "mustard",
+      "commodity_name": {"en": "Mustard / Rapeseed", "ta": "கடுகு", "te": "ఆవాలు", "hi": "सरसों"},
+      "unit": "₹ per quintal",
+      "markets": [
+        {"region": "Rajasthan (Bharatpur / Alwar)", "min": 4500, "max": 6500, "modal": 5500, "grade_note": "MSP reference ~₹5650/quintal (2023-24)"},
+        {"region": "Haryana / Uttar Pradesh", "min": 4600, "max": 6300, "modal": 5400, "grade_note": "Common grade yellow mustard"}
+      ]
+    },
+    {
+      "commodity_id": "chilli",
+      "commodity_name": {"en": "Chilli (Dry)", "ta": "மிளகாய் (வற்றல்)", "te": "ఎండు మిర్చి", "hi": "लाल मिर्च (सूखी)"},
+      "unit": "₹ per quintal",
+      "markets": [
+        {"region": "Andhra Pradesh (Guntur mandi)", "min": 5000, "max": 22000, "modal": 10000, "grade_note": "Guntur is India's largest dry chilli market. Wide price range by variety (Teja, Byadgi, 334 etc.) and quality grade."},
+        {"region": "Karnataka (Byadgi mandi)", "min": 8000, "max": 25000, "modal": 14000, "grade_note": "Byadgi variety commands premium for deep red colour"}
+      ]
+    },
+    {
+      "commodity_id": "turmeric",
+      "commodity_name": {"en": "Turmeric (Dry)", "ta": "மஞ்சள்", "te": "పసుపు (పొడి)", "hi": "हल्दी (सूखी)"},
+      "unit": "₹ per quintal",
+      "markets": [
+        {"region": "Andhra Pradesh / Telangana (Nizamabad / Erode)", "min": 6000, "max": 16000, "modal": 9000, "grade_note": "Erode (Tamil Nadu) and Nizamabad are major turmeric markets. Wide quality variation."},
+        {"region": "Maharashtra (Sangli)", "min": 5500, "max": 14000, "modal": 8000, "grade_note": "Sangli is a major turmeric trading hub"}
+      ]
+    },
+    {
+      "commodity_id": "banana",
+      "commodity_name": {"en": "Banana", "ta": "வாழைப்பழம்", "te": "అరటి పండు", "hi": "केला"},
+      "unit": "₹ per dozen",
+      "markets": [
+        {"region": "Andhra Pradesh / Tamil Nadu", "min": 15, "max": 60, "modal": 30, "grade_note": "Price per dozen; Robusta and Nendran varieties command premium"},
+        {"region": "Maharashtra (Jalgaon)", "min": 18, "max": 70, "modal": 35, "grade_note": "Jalgaon is major banana production zone"}
+      ]
+    },
+    {
+      "commodity_id": "sugarcane",
+      "commodity_name": {"en": "Sugarcane", "ta": "கரும்பு", "te": "చెరకు", "hi": "गन्ना"},
+      "unit": "₹ per tonne",
+      "markets": [
+        {"region": "Uttar Pradesh", "min": 3400, "max": 4000, "modal": 3700, "grade_note": "Fair and Remunerative Price (FRP) ~₹3150/tonne (2023-24); mills may pay above FRP"},
+        {"region": "Maharashtra / Karnataka", "min": 3200, "max": 3800, "modal": 3500, "grade_note": "FRP applies; cooperative sugar factories"},
+        {"region": "Tamil Nadu / Andhra Pradesh", "min": 2800, "max": 3700, "modal": 3200, "grade_note": "FRP applies; prices by sugar recovery percentage"}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,221 @@
+{
+  "_note": "Safety guidance sourced from NDMA SACHET Dos and Dont guidelines, Ministry of Agriculture and Farmers Welfare guidelines, and general occupational health principles. This information is for general awareness only. In any emergency, follow instructions from official government sources, emergency services and local authorities.",
+  "weather_hazards": [
+    {
+      "id": "cyclone",
+      "name": {"en": "Cyclone and Severe Storm", "ta": "சூறாவளி", "te": "తుఫాను", "hi": "चक्रवात"},
+      "priority": "CRITICAL",
+      "before": [
+        "Monitor official IMD alerts and state government warnings daily. Sign up for Doordarshan/All India Radio emergency broadcasts.",
+        "Harvest standing crops immediately if a cyclone warning is issued and crop is close to maturity. Early harvest with some loss is better than total crop loss.",
+        "Secure or store all loose farm equipment, tools, irrigation pipes and materials in a protected building.",
+        "Move livestock to higher ground or secured covered shelter.",
+        "Check and reinforce bunds, embankments and drainage channels.",
+        "Prepare an emergency kit: drinking water, food, medicines, important documents.",
+        "Know your nearest emergency shelter location."
+      ],
+      "during": [
+        "DO NOT go outside during a cyclone.",
+        "Stay in the strongest room of a solid building, away from windows.",
+        "Do not shelter under trees, near electric poles, towers or weak structures.",
+        "Do not try to protect your crop during the storm—your life is more important.",
+        "If instructed to evacuate, do so immediately. Do not delay."
+      ],
+      "after": [
+        "Do not return to damaged area until official all-clear is given.",
+        "Beware of fallen electric wires—do not touch them; call 1912 (electricity emergency).",
+        "Check standing water for submerged electrical equipment before entering fields.",
+        "Survey crop damage and contact your insurance company (PM Fasal Bima Yojana) and agriculture department.",
+        "Report to local revenue/patwari for damage assessment.",
+        "Do not eat food that has come in contact with floodwater."
+      ],
+      "emergency_contacts": "District Collector office, NDMA helpline: 1078, State Disaster Management Authority"
+    },
+    {
+      "id": "strong_winds",
+      "name": {"en": "Strong Winds", "ta": "கடும் காற்று", "te": "బలమైన గాలులు", "hi": "तेज हवाएं"},
+      "priority": "HIGH",
+      "before": [
+        "Support tall crops (sugarcane, maize, banana) with stakes and tying before forecast strong wind events.",
+        "Secure shade nets, plastic mulch and polytunnels.",
+        "Remove or secure temporary structures near the field.",
+        "Keep irrigation infrastructure secured."
+      ],
+      "during": [
+        "Do not work in the field during strong wind advisories.",
+        "Do not stand near tall trees, power poles or billboards.",
+        "Do not spray pesticides during wind—drift causes exposure and ineffective application.",
+        "Seek shelter in a solid building."
+      ],
+      "after": [
+        "Inspect crops for lodging and physical damage.",
+        "Re-stake or support lodged crops if recoverable.",
+        "Check for fallen branches on electric lines—call electricity department.",
+        "Apply fungicide spray if rain accompanies wind—moisture on wounds promotes disease entry."
+      ]
+    },
+    {
+      "id": "heavy_rain",
+      "name": {"en": "Heavy Rain", "ta": "கனமழை", "te": "భారీ వర్షాలు", "hi": "भारी बारिश"},
+      "priority": "HIGH",
+      "before": [
+        "Ensure field drains and outlets are clear and open before monsoon.",
+        "Build proper drainage channels on sloping fields.",
+        "Do not apply any pesticide or foliar spray if heavy rain is forecast within 12 hours—it will wash away and waste inputs.",
+        "Harvest mature crops before forecast heavy rain events."
+      ],
+      "during": [
+        "Do not enter flooded fields or low-lying areas.",
+        "Do not touch electrical equipment if you are standing in water.",
+        "Seek shelter in a solid structure away from streams and rivers."
+      ],
+      "after": [
+        "Drain waterlogged fields immediately—standing water for >48 hours causes root asphyxiation in most crops.",
+        "Spray broad-spectrum fungicide after flooding subsides to prevent fungal infections.",
+        "Inspect for soil erosion and repair bunds and slopes."
+      ]
+    },
+    {
+      "id": "flooding",
+      "name": {"en": "Flooding and Waterlogging", "ta": "வெள்ளம்", "te": "వరదలు", "hi": "बाढ़"},
+      "priority": "CRITICAL",
+      "before": [
+        "Know the flood history of your area. Do not grow crops in flood-prone zones without flood-tolerant varieties.",
+        "Ensure drainage channels are open and maintained.",
+        "Move machinery and stored produce to higher ground before forecast floods."
+      ],
+      "during": [
+        "NEVER enter a flooded pump room or touch submerged electrical equipment—risk of fatal electrocution.",
+        "NEVER walk through fast-moving floodwater—1 foot of fast water can knock you down.",
+        "Do not drive vehicles through flooded roads or fields.",
+        "Move people, animals and essential supplies to higher ground.",
+        "Turn off all electrical equipment at the main switch if your building is at risk of flooding."
+      ],
+      "after": [
+        "Do not return to flooded areas until officially safe.",
+        "Do not eat crops or food that has been submerged in floodwater without expert advice.",
+        "Survey crop damage and report to agriculture department for compensation.",
+        "Drain fields immediately; apply fungicide spray; remove dead plant material.",
+        "Check electrical installations for water damage before switching on."
+      ],
+      "emergency_contacts": "NDMA: 1078, Police: 100, Fire/Rescue: 101"
+    },
+    {
+      "id": "lightning",
+      "name": {"en": "Lightning", "ta": "மின்னல்", "te": "పిడుగులు", "hi": "बिजली गिरना"},
+      "priority": "CRITICAL",
+      "before": [
+        "Monitor weather forecast for thunderstorm advisories.",
+        "Schedule open-field work to avoid afternoon hours during monsoon—peak thunderstorm period.",
+        "Do not start field work or spray operations if dark storm clouds are building."
+      ],
+      "during": [
+        "STOP all outdoor work immediately at first sound of thunder.",
+        "Move to a solid building or fully enclosed vehicle. Do not shelter in open sheds, under trees, near isolated tall objects or in open fields.",
+        "Do not use tractor or other metal agricultural equipment during a thunderstorm.",
+        "Do not touch metal fences, irrigation pipes or metal structures.",
+        "Stay away from water bodies—tanks, rivers, canals—during thunderstorm.",
+        "If caught in the open: crouch low with feet together, do not lie flat, move away from tall trees and water."
+      ],
+      "after": [
+        "Wait 30 minutes after the last thunder before resuming outdoor work.",
+        "Check for fallen electric wires. DO NOT touch them—call electricity emergency 1912.",
+        "If someone is struck by lightning: call emergency services immediately. It is safe to touch a lightning victim—they retain no electrical charge.",
+        "Check any electrical equipment that may have been affected by a power surge."
+      ],
+      "emergency_contacts": "Emergency: 112, Electricity emergency: 1912"
+    },
+    {
+      "id": "heatwave",
+      "name": {"en": "Heatwave", "ta": "வெப்ப அலை", "te": "వేడి గాలులు", "hi": "लू / गर्म हवा"},
+      "priority": "HIGH",
+      "farmer_health": [
+        "Reschedule heavy outdoor work to early morning (6–10am) and late evening (5–7pm) during declared heatwave periods.",
+        "Take shade and rest breaks every 45–60 minutes when working in heat.",
+        "Drink cool water (not very cold) regularly—at least 1 litre per hour during outdoor work in heat.",
+        "Wear light-coloured, loose-fitting cotton clothing. Cover head with a wet cloth or hat.",
+        "Never apply pesticides during peak heat hours—increased absorption through skin and inhalation risk.",
+        "Watch yourself and your co-workers for signs of heat illness: excessive sweating stops (danger sign), confusion, rapid pulse, hot red skin.",
+        "HEAT STROKE WARNING: If someone stops sweating, becomes confused or collapses, cool them immediately with water and seek urgent medical help. Call 108 (ambulance)."
+      ],
+      "crop_protection": [
+        "Irrigate crops in the evening during heatwaves—morning irrigation evaporates quickly.",
+        "Mulching significantly reduces soil temperature and water stress.",
+        "Do not transplant seedlings during peak heat days.",
+        "Protect nursery with shade net (50% shade).",
+        "Foliar spray of kaolin clay or potassium silicate may reduce heat stress in fruit crops (consult KVK)."
+      ],
+      "emergency_contacts": "Ambulance: 108, Emergency: 112"
+    },
+    {
+      "id": "drought",
+      "name": {"en": "Drought", "ta": "வறட்சி", "te": "కరువు", "hi": "सूखा"},
+      "priority": "MEDIUM",
+      "practices": [
+        "Adopt drought-tolerant varieties recommended by your state agriculture department.",
+        "Use micro-irrigation (drip, sprinkler) to maximise water efficiency.",
+        "Mulching reduces soil water evaporation by 30–40%.",
+        "Rainwater harvesting: farm ponds and check dams capture runoff for later use.",
+        "In declared drought, contact your state disaster relief cell for crop damage compensation (PMFBY).",
+        "Prioritise drinking water and domestic water use over irrigation.",
+        "Reduce crop density and fertiliser input if water is expected to remain scarce.",
+        "Consider short-duration varieties or change to a less water-intensive crop."
+      ]
+    }
+  ],
+  "safety_practices": [
+    {
+      "id": "electrical_safety",
+      "name": {"en": "Water Motor and Electrical Safety", "ta": "மின்சார பாதுகாப்பு", "te": "విద్యుత్ భద్రత", "hi": "विद्युत सुरक्षा"},
+      "priority": "CRITICAL",
+      "rules": [
+        "ALWAYS have your pump motor, wiring and earthing installed and regularly checked by a licensed/qualified electrician. Do not attempt electrical repairs yourself.",
+        "PROPER EARTHING is mandatory. A pump without earth is a potential death trap. Earthing connects the motor body to the ground so fault current flows safely away.",
+        "Install a Residual Current Circuit Breaker (RCCB / ELCB) on the pump circuit. This device disconnects power within 30 milliseconds if a leakage current is detected, preventing electrocution.",
+        "Protect the motor and electrical panel with a weatherproof enclosure. Water, dust and moisture inside electrical panels cause short circuits and fire.",
+        "NEVER operate a pump motor while standing in water, in a flooded pump room or on wet soil with bare feet. Wear rubber-soled boots.",
+        "NEVER touch a fallen power line. Even if the line appears dead, it may be live. Move away and call the electricity department (1912) or emergency (112) immediately.",
+        "NEVER touch submerged electrical equipment in a flooded pump room. Turn off power at the main MCB from a dry location and call a qualified electrician.",
+        "Switch off and isolate power (lockout) before any maintenance on pump or motor.",
+        "Check electrical cables regularly for cracks, rodent damage or exposed copper wire. Replace damaged cables immediately.",
+        "Keep children and animals away from pump rooms and electrical panels."
+      ]
+    },
+    {
+      "id": "pesticide_safety",
+      "name": {"en": "Pesticide Safety", "ta": "பூச்சிக்கொல்லி பாதுகாப்பு", "te": "పురుగుమందు భద్రత", "hi": "कीटनाशक सुरक्षा"},
+      "priority": "CRITICAL",
+      "rules": [
+        "READ THE LABEL completely before using any pesticide. The label is the law.",
+        "WEAR APPROPRIATE PPE: chemical-resistant gloves, face shield or goggles, an approved respirator or face mask, long-sleeved shirt, long trousers, rubber boots. Do not substitute with cloth masks for pesticide application.",
+        "Mix pesticides outdoors or in a well-ventilated area. Never in an enclosed space.",
+        "Never apply pesticides during strong wind (above 15 km/h), which causes drift and exposure.",
+        "Never eat, drink, smoke or touch your face while mixing or applying pesticides.",
+        "OBSERVE THE RE-ENTRY INTERVAL (REI): do not enter the sprayed field until the stated time has passed, even if you cannot smell the spray.",
+        "OBSERVE THE PRE-HARVEST INTERVAL (PHI): do not harvest the crop before the stated number of days from the last spray. PHI varies by product and crop.",
+        "STORE pesticides locked in their original labelled containers, in a separate dry ventilated structure away from food, water, medicines, children and animals.",
+        "NEVER transfer pesticide into food or drink containers.",
+        "DISPOSE of empty containers safely: rinse the container three times (triple rinse) and puncture it before disposal according to local rules. Never burn pesticide containers.",
+        "If pesticide contacts skin: remove contaminated clothing and wash skin thoroughly with soap and water for 15 minutes.",
+        "If pesticide splashes in eyes: flush with clean water for 15 minutes.",
+        "PESTICIDE POISONING: go to hospital immediately. Take the product label or container with you.",
+        "Poison Control: 1800-11-6666 (India national)"
+      ]
+    },
+    {
+      "id": "general_health",
+      "name": {"en": "General Farmer Health and Safety", "ta": "பொது விவசாயி பாதுகாப்பு", "te": "సాధారణ రైతు భద్రత", "hi": "सामान्य किसान स्वास्थ्य"},
+      "priority": "MEDIUM",
+      "rules": [
+        "HEAT STRESS: Take breaks in shade every hour. Drink 250 ml of water every 20 minutes during physical outdoor work in summer. Do not wait until you feel thirsty.",
+        "MACHINERY SAFETY: Read the operator's manual before using any mechanical equipment. Never remove safety guards. Keep all persons away from moving parts.",
+        "TRACTOR SAFETY: Check brakes, steering and tyre pressure before operation. Never allow passengers in the tractor cab unless the tractor has an approved second seat. Avoid operating on steep slopes.",
+        "HAND TOOLS: Keep cutting tools sharp and stored safely. Worn handles cause slipping and injury. Use a hoe with correct posture—back straight—to avoid back injury.",
+        "BACK CARE: Use proper lifting technique: bend knees, keep back straight, hold load close to body. Use mechanical aids for heavy lifting.",
+        "FIRST AID: Keep a basic first aid kit in the farm area: bandages, antiseptic, oral rehydration salts. Know the location of the nearest primary health centre.",
+        "FARM CHEMICALS: Keep all chemicals—fertilisers, pesticides, herbicides—away from children at all times.",
+        "WELLS AND WATER BODIES: Cover open wells and water tanks to prevent accidental falls. Teach children about farm water hazards."
+      ]
+    }
+  ]
+}

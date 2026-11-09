@@ -1,0 +1,239 @@
+{
+  "_note": "Crop lifecycle roadmaps based on general best-practice guidance from ICAR, state agriculture departments and KVK resources. Consult your local agricultural officer for district-specific advice.",
+  "rice": {
+    "crop_name": "Rice (Paddy)",
+    "seasons": "Kharif (June–November), Rabi in some irrigated areas",
+    "stages": [
+      {
+        "stage": 1,
+        "name": "Land Preparation",
+        "duration": "7–14 days before sowing",
+        "tasks": [
+          "Deep ploughing once to 20–25 cm depth to break hardpan and improve aeration.",
+          "Puddle the field with 2–3 passes of a rotavator or disc harrow after flooding for transplanted rice.",
+          "Level the field carefully to ensure uniform water distribution.",
+          "Apply well-composted farmyard manure (FYM) at 5–10 tonnes/ha and incorporate into the soil.",
+          "Check bunds and repair leaks to retain water during growth."
+        ],
+        "warnings": ["Do not plough when soil is too dry or too wet for optimal tilth.", "Poor levelling causes uneven water distribution and patchy crop stand."]
+      },
+      {
+        "stage": 2,
+        "name": "Soil Testing and Field Arrangement",
+        "duration": "4–6 weeks before sowing",
+        "tasks": [
+          "Collect soil samples from 8–10 points in the field, mix and send to your nearest Soil Testing Laboratory or KVK.",
+          "Test for pH, organic carbon, available nitrogen (N), phosphorus (P) and potassium (K).",
+          "Rice prefers slightly acidic to neutral soils (pH 5.5–7.0).",
+          "Apply lime if pH is below 5.0 to improve nutrient availability.",
+          "Design field layout with proper bunds, drainage channels and access paths."
+        ],
+        "warnings": ["Do not apply fertilisers blindly. Excess nitrogen causes lodging and increases pest and disease risk.", "Soil test results are valid for 2–3 years if practices remain similar."]
+      },
+      {
+        "stage": 3,
+        "name": "Seed Selection and Preparation",
+        "duration": "10–15 days before sowing",
+        "tasks": [
+          "Select certified seed of a variety recommended by your State Agriculture Department or KVK for your specific district and season.",
+          "Perform salt water test: dissolve 25g salt in 1 litre water; seeds that float are hollow—discard them.",
+          "Treat seeds with fungicide or bioagent Trichoderma viride at 4g/kg seed to prevent seed-borne diseases.",
+          "Soak seeds in water for 24 hours, then incubate wrapped in gunny bags for 24–36 hours until they sprout.",
+          "Prepare nursery beds: 800–1000 sq m nursery area is sufficient for transplanting 1 hectare."
+        ],
+        "warnings": ["Use only certified seed from a government-approved source or authorised dealer.", "Check the seed bag for variety name, germination %, lot number and validity date."]
+      },
+      {
+        "stage": 4,
+        "name": "Sowing / Transplantation",
+        "duration": "Transplant 25–35 day old seedlings; direct seeding at recommended time",
+        "tasks": [
+          "Transplant 2–3 seedlings per hill at 20 cm × 15 cm spacing for medium-duration varieties.",
+          "For SRI (System of Rice Intensification): transplant 8–12 day old seedlings, single seedling per hill at 25 cm × 25 cm spacing.",
+          "Direct seeded rice: sow pre-germinated seeds by broadcasting or drilling in rows.",
+          "Ensure uniform planting depth of 2–3 cm.",
+          "Maintain a water level of 2–3 cm after transplanting for 5–7 days."
+        ],
+        "warnings": ["Do not transplant older (>35 days) seedlings as they take longer to recover and reduce tiller number.", "Avoid transplanting during peak heat hours (11am–3pm)."]
+      },
+      {
+        "stage": 5,
+        "name": "Irrigation Management",
+        "duration": "Throughout crop period",
+        "tasks": [
+          "Maintain 2–5 cm water depth from transplanting to panicle initiation.",
+          "Drain the field for 3–5 days at tillering (25–30 days after transplanting) to promote root growth and discourage excessive vegetative growth.",
+          "Maintain 5 cm water depth from panicle initiation to flowering—this is the most critical stage.",
+          "Drain the field completely 10–15 days before harvest to facilitate ripening and field entry for harvesting machinery.",
+          "Avoid water stress especially at flowering and grain filling stages."
+        ],
+        "warnings": [
+          "SAFETY: Never operate water pumps barefoot or while standing in water. Use rubber-soled footwear.",
+          "SAFETY: Ensure the pump motor is properly earthed and protected by an RCCB. Have maintenance done by a qualified electrician only.",
+          "Do not let the field dry out completely during flowering as this causes spikelet sterility."
+        ]
+      },
+      {
+        "stage": 6,
+        "name": "Nutrient Management",
+        "duration": "At transplanting, 25–30 days, 45–50 days after transplanting",
+        "tasks": [
+          "Apply nitrogen (N), phosphorus (P) and potassium (K) based on soil test recommendation. General guideline for medium varieties: 120:60:60 kg NPK per ha.",
+          "Split nitrogen application: 1/3 at transplanting, 1/3 at active tillering (25–30 DAT), 1/3 at panicle initiation (45–50 DAT).",
+          "Apply full P and K as basal dose at transplanting.",
+          "Use green manure (Sesbania) as a substitute for part of N requirement.",
+          "Zinc deficiency is common in rice soils: apply zinc sulphate 25 kg/ha if deficiency symptoms (brown rusty patches on leaves) appear."
+        ],
+        "warnings": ["Never apply urea during rains or in standing water—nitrogen is lost by volatilisation.", "Verify fertiliser quantities with your local KVK or soil test recommendation before applying."]
+      },
+      {
+        "stage": 7,
+        "name": "Weed Management",
+        "duration": "0–40 days after transplanting",
+        "tasks": [
+          "Maintain proper water level (3–5 cm) in the early stages—water itself suppresses many weeds.",
+          "Manual or mechanical weeding at 20 and 40 days after transplanting.",
+          "Rotate weed species by changing water management and rotation crops.",
+          "If herbicides are used, apply only registered products at the recommended rate for the specific weed spectrum and follow all label instructions."
+        ],
+        "warnings": ["The critical weed competition period is 0–40 days after transplanting.", "Always wear gloves and protective clothing when handling herbicides."]
+      },
+      {
+        "stage": 8,
+        "name": "Pest and Disease Monitoring",
+        "duration": "Weekly scouting from transplanting to harvest",
+        "tasks": [
+          "Scout the field weekly at 5–10 randomly selected spots.",
+          "Check for stem borer (dead hearts in vegetative, white ears at heading), leaf folder, brown planthopper and gall midge.",
+          "Monitor for blast (grey-to-white diamond-shaped lesions on leaves), sheath blight and bacterial leaf blight.",
+          "Set up light traps or pheromone traps to monitor insect pest populations.",
+          "Apply control measures only when pest populations exceed economic threshold levels (ETL). Consult your local agricultural officer for current ETL values."
+        ],
+        "warnings": ["Never apply pesticides without confirming the pest identity and population level.", "SAFETY: Always wear PPE (mask, gloves, goggles) when applying any pesticide."]
+      },
+      {
+        "stage": 9,
+        "name": "Natural Farming Practices",
+        "duration": "Throughout crop period",
+        "tasks": [
+          "Apply Panchagavya (5%) as a foliar spray at tillering and flowering to boost plant immunity (locally validated practice; results vary).",
+          "Use neem-based products (neem oil, neem cake) as soil amendments and light pest deterrents.",
+          "Promote beneficial insects by avoiding broad-spectrum insecticide sprays during flowering.",
+          "Install bird perches at 10–12 per ha to encourage insectivorous birds.",
+          "Use green manure crops (Sesbania, Crotalaria) as in-situ N sources before transplanting."
+        ],
+        "warnings": ["Natural preparations vary in effectiveness. Validate with your KVK before replacing recommended practices.", "Panchagavya is a supportive practice—it does not replace soil nutrition or registered pest management."]
+      },
+      {
+        "stage": 10,
+        "name": "Harvesting",
+        "duration": "When 80–85% of grains are golden yellow and straw starts to turn yellow",
+        "tasks": [
+          "Harvest when grain moisture is 20–22% for mechanical harvesting or 18–20% for manual harvesting.",
+          "Cut at ground level to maximise straw recovery.",
+          "Thresh immediately or same day as cutting to avoid grain losses.",
+          "If using a combine harvester, ensure the field is dry enough to avoid machinery sinking."
+        ],
+        "warnings": ["Delaying harvest beyond full maturity causes shattering loss and quality deterioration.", "SAFETY: Keep all persons clear of harvesting machinery cutting zone."]
+      },
+      {
+        "stage": 11,
+        "name": "Drying and Storage",
+        "duration": "1–2 weeks after harvest",
+        "tasks": [
+          "Sun dry paddy to 14% moisture for safe storage. Below 13% moisture is ideal for long-term storage.",
+          "Use a moisture meter to verify moisture content before storing.",
+          "Store in clean, dry, well-ventilated gunny bags or hermetic bins raised off the ground on pallets.",
+          "Apply safe storage products (e.g. aluminium phosphide) only if prescribed by an expert and following exact label instructions.",
+          "Keep storage facility pest-free: check for rodents, weevils and moisture entry."
+        ],
+        "warnings": ["SAFETY: Aluminium phosphide (Celphos) is highly toxic—handle only with proper training, PPE and ventilation.", "Never eat, drink or smoke in the storage area."]
+      },
+      {
+        "stage": 12,
+        "name": "Market Guidance",
+        "duration": "Before and after harvest",
+        "tasks": [
+          "Monitor AGMARKNET and e-NAM price trends for your district's mandi.",
+          "Contact your local Farmer Producer Organisation (FPO) or cooperative for collective selling to get better prices.",
+          "Check the Minimum Support Price (MSP) announced by the Government of India for paddy.",
+          "Register with PM-KISAN and PM Fasal Bima Yojana if not already done.",
+          "Grade and clean the paddy before sale to achieve better price."
+        ],
+        "warnings": ["Prices shown in this app are approximate/illustrative—always verify with your local mandi.", "Do not sell under distress immediately after harvest—store if possible to get better prices."]
+      }
+    ]
+  },
+  "wheat": {
+    "crop_name": "Wheat",
+    "seasons": "Rabi (October–April)",
+    "stages": [
+      {"stage": 1, "name": "Land Preparation", "duration": "October", "tasks": ["Deep plough once after kharif harvest to 20 cm depth.", "Apply FYM 5–8 tonnes/ha and incorporate.", "Fine tilth preparation with 2–3 cultivations followed by planking.", "Ensure field is well-levelled for uniform irrigation."], "warnings": ["Sow on time—late sowing significantly reduces yield."]},
+      {"stage": 2, "name": "Soil Testing and Field Arrangement", "duration": "September–October", "tasks": ["Test for pH, NPK, zinc and iron.", "Wheat prefers slightly alkaline soils (pH 6.0–8.0).", "Arrange irrigation channels and field layout."], "warnings": []},
+      {"stage": 3, "name": "Seed Selection and Treatment", "duration": "October", "tasks": ["Use certified seed of high-yielding variety (HD 3086, GW 322, DBW 187 etc.).", "Treat with carbendazim + thiram at 2.5g + 1.5g per kg seed.", "Use Azotobacter biofertiliser inoculant to reduce N requirement."], "warnings": ["Verify recommended varieties for your state with KVK."]},
+      {"stage": 4, "name": "Sowing", "duration": "Timely sowing: October 25–November 15 in most states", "tasks": ["Drill seed at 20–22 kg/ha for irrigated conditions.", "Row spacing 20–22 cm.", "Sowing depth 4–5 cm.", "Do not sow when soil is too wet."], "warnings": ["Late sowing (after November 20) reduces tillering and yield."]},
+      {"stage": 5, "name": "Irrigation", "duration": "At critical stages: CRI, tillering, jointing, booting, heading, dough", "tasks": ["Apply 6 irrigations at Crown Root Initiation (21 days), tillering (40 days), jointing (60 days), booting (80 days), heading/flowering (100 days), and grain filling/dough stage (115 days).", "Each irrigation: 5–7 cm water depth.", "Avoid irrigation during windy conditions to prevent lodging."], "warnings": ["SAFETY: Same electrical pump safety rules apply—earthing, RCCB, no barefoot operation."]},
+      {"stage": 6, "name": "Nutrient Management", "duration": "Basal + top dressing", "tasks": ["120:60:40 kg N:P:K per ha for irrigated high-yield varieties.", "Apply half N + full P + full K as basal dose.", "Apply remaining half N at first irrigation (CRI stage).", "Use micronutrient mix if deficiency observed."], "warnings": []},
+      {"stage": 7, "name": "Weed Management", "duration": "20–35 days after sowing", "tasks": ["Manual weeding at 25–30 days.", "Herbicide use: apply only registered products for narrow/broadleaf weeds. Consult label for rate and timing."], "warnings": ["Wear gloves and protective clothing during herbicide application."]},
+      {"stage": 8, "name": "Pest and Disease Monitoring", "duration": "Throughout season", "tasks": ["Scout weekly for aphids, Hessian fly and termites.", "Monitor for yellow rust, brown rust, loose smut and Karnal bunt.", "Yellow rust: distinctive yellow stripes on leaves—requires urgent fungicide action.", "Remove and destroy volunteer plants and alternate hosts."], "warnings": ["Yellow rust can cause severe losses if not controlled quickly. Contact agricultural officer immediately."]},
+      {"stage": 9, "name": "Natural Farming Practices", "duration": "Throughout", "tasks": ["Crop rotation: rice–wheat rotation is standard; include a legume once every 3–4 years to restore soil N.", "Use neem cake at 250 kg/ha as soil amendment.", "Avoid burning wheat stubble—incorporate or remove for composting."], "warnings": ["Stubble burning causes air pollution and destroys soil biology. It is banned in several states."]},
+      {"stage": 10, "name": "Harvesting", "duration": "When 90% grains are hard and golden", "tasks": ["Harvest at grain moisture 14–18%.", "Mechanical harvesting with combine is most common.", "Ensure combine settings are correct to minimise grain loss."], "warnings": ["SAFETY: Keep bystanders away from combine harvester.", "Harvest promptly—unseasonal rains after maturity cause sprouting and quality loss."]},
+      {"stage": 11, "name": "Drying and Storage", "duration": "Post harvest", "tasks": ["Sun dry to <12% moisture for safe storage.", "Store in clean gunny bags or bins.", "Keep away from moisture and rodents."], "warnings": ["Grain with >14% moisture in storage will develop mould and mycotoxins."]},
+      {"stage": 12, "name": "Market Guidance", "duration": "Post harvest", "tasks": ["Check MSP for wheat announced by Government of India.", "Sell at APMC/mandi, through FPO or e-NAM platform.", "Grading improves price realisation."], "warnings": ["Prices vary by mandi, grade and season—always verify locally."]}
+    ]
+  },
+  "cotton": {
+    "crop_name": "Cotton",
+    "seasons": "Kharif (April–November/December)",
+    "stages": [
+      {"stage": 1, "name": "Land Preparation", "duration": "March–April", "tasks": ["Deep plough to 30–35 cm depth once every 2–3 years to break hardpan.", "Apply FYM 5–10 tonnes/ha.", "Prepare fine seedbed with 2–3 cultivations."], "warnings": []},
+      {"stage": 2, "name": "Soil Testing", "duration": "February–March", "tasks": ["Test for boron, sulphur, zinc in addition to NPK—cotton is sensitive to micronutrient deficiencies.", "Ideal pH: 7.0–8.0."], "warnings": []},
+      {"stage": 3, "name": "Seed Selection", "duration": "April", "tasks": ["Use only approved Bt cotton hybrid seed from a licensed dealer.", "Bt cotton requires mandatory refuge (non-Bt cotton rows) per regulatory requirement.", "Treat seeds with fungicide and imidacloprid (systemic insecticide) per label."], "warnings": ["SAFETY: Imidacloprid is toxic—avoid contact with skin and eyes. Follow label exactly.", "Illegal/unapproved Bt cotton seed is sold in some areas—verify the seed packet regulatory compliance."]},
+      {"stage": 4, "name": "Sowing", "duration": "May–June after monsoon onset", "tasks": ["Sow at 60–90 cm row spacing; 60–75 cm plant spacing.", "Seed rate: 700–800 g/ha (Bt hybrid).", "Sow at 3–4 cm depth after soil moisture is adequate."], "warnings": []},
+      {"stage": 5, "name": "Irrigation", "duration": "As required", "tasks": ["Cotton is relatively drought tolerant but responds well to irrigation at boll development.", "Critical stages: squaring, flowering and boll setting.", "Avoid excess moisture—cotton is very sensitive to waterlogging."], "warnings": ["SAFETY: Same water pump electrical safety rules apply."]},
+      {"stage": 6, "name": "Nutrient Management", "duration": "Basal + splits", "tasks": ["General: 120–150:60:60 kg NPK per ha.", "Apply full P, K and 1/3 N as basal.", "Split remaining N at 30 and 60 days.", "Spray 0.5% zinc sulphate if yellowing observed."], "warnings": []},
+      {"stage": 7, "name": "Weed Management", "duration": "0–60 days", "tasks": ["Intercultural operations at 30 and 60 days.", "Manual weeding in row spaces.", "Herbicides: consult local extension for registered options."], "warnings": []},
+      {"stage": 8, "name": "Pest and Disease Monitoring", "duration": "Weekly from germination", "tasks": ["Scout for bollworms (American, Pink, Spotted), aphids, whitefly and mites.", "Monitor for leaf curl virus (transmitted by whitefly)—there is no cure; rogue out infected plants.", "Set pheromone traps at 5 per ha for bollworm monitoring.", "Apply biocontrol agents (Trichogramma cards) at egg-laying stage of bollworm."], "warnings": ["SAFETY: Wear full PPE for all pesticide applications.", "Do not apply pesticides during hot afternoons—heat stress increases drift and worker exposure risk."]},
+      {"stage": 9, "name": "Natural Farming Practices", "duration": "Throughout", "tasks": ["Use neem oil spray (3–5 ml/L) as preventive IPM measure.", "Intercrop with blackeye bean or groundnut at 1 row per 4 rows of cotton to attract beneficial insects.", "Install pheromone traps before pest season.", "Use sticky yellow traps for whitefly monitoring."], "warnings": []},
+      {"stage": 10, "name": "Harvesting (Picking)", "duration": "October–December (multiple pickings)", "tasks": ["Pick mature open bolls by hand.", "Do 3–4 pickings at 10–15 day intervals.", "Sort carefully to separate clean seed cotton (kapas) from trash.", "Each picking should be bagged and stored separately."], "warnings": ["SAFETY: Avoid picking during strong winds or just after pesticide spray. Observe re-entry interval on all pesticide labels."]},
+      {"stage": 11, "name": "Drying and Storage", "duration": "Post harvest", "tasks": ["Sun dry kapas to <8% moisture before storage.", "Store in clean gunny bags in dry, well-ventilated shed.", "Keep away from moisture and direct rain."], "warnings": ["Damp kapas loses quality rapidly and fetches lower price at gin."]},
+      {"stage": 12, "name": "Market Guidance", "duration": "Post harvest", "tasks": ["Check MSP for cotton (long and medium staple).", "Sell at licensed ginning factory, APMC or CCI procurement centre.", "Grading by staple length, micronaire and strength improves price.", "Contact your FPO for collective marketing."], "warnings": ["Prices vary by cotton grade, staple length and demand—always verify locally."]}
+    ]
+  },
+  "groundnut": {
+    "crop_name": "Groundnut",
+    "seasons": "Kharif (June–October), Rabi in irrigated areas",
+    "stages": [
+      {"stage": 1, "name": "Land Preparation", "duration": "May–June", "tasks": ["Deep plough once in 2–3 years; light tilth for groundnut.", "Apply FYM 5 tonnes/ha.", "Prepare fine, well-drained seedbed.", "Ensure good drainage—groundnut is very sensitive to waterlogging."], "warnings": []},
+      {"stage": 2, "name": "Soil Testing", "duration": "Before sowing", "tasks": ["Ideal pH: 6.0–6.5.", "Test for calcium and boron—both are critical for pod filling.", "Apply gypsum 400–500 kg/ha if calcium is low."], "warnings": []},
+      {"stage": 3, "name": "Seed Selection", "duration": "Before sowing", "tasks": ["Shell and sort seeds to remove shrivelled or mouldy kernels.", "Use certified seed of recommended variety.", "Treat with Rhizobium japonicum inoculant to improve N fixation."], "warnings": []},
+      {"stage": 4, "name": "Sowing", "duration": "June after first good rain", "tasks": ["Row spacing: 30 cm × 10 cm.", "Seed rate: 80–100 kg/ha (shelled kernels).", "Sow at 5–6 cm depth.", "Do not sow in dry soil."], "warnings": []},
+      {"stage": 5, "name": "Irrigation", "duration": "At critical stages", "tasks": ["Provide irrigation at pod initiation, peg elongation and pod filling if rainfall is insufficient.", "Avoid excess moisture during maturation—this promotes aflatoxin mould."], "warnings": ["SAFETY: Same pump safety rules apply."]},
+      {"stage": 6, "name": "Nutrient Management", "duration": "Basal", "tasks": ["Apply 25:50:75 kg N:P:K per ha as basal.", "Apply gypsum 400–500 kg/ha at pegging for calcium supply.", "Use micronutrient mixture if deficiency observed."], "warnings": []},
+      {"stage": 7, "name": "Weed Management", "duration": "0–45 days", "tasks": ["2 manual weedings at 20 and 40 days.", "Earth up at 40 days to help pegs enter soil."], "warnings": []},
+      {"stage": 8, "name": "Pest and Disease Monitoring", "duration": "Throughout", "tasks": ["Scout for leaf miner, aphids, red hairy caterpillar and spider mites.", "Monitor for tikka leaf spot (early and late blight) and rust.", "Remove infected plants to reduce spread.", "Collar rot at seedling stage—improve drainage and use Trichoderma."], "warnings": ["SAFETY: Full PPE for pesticide applications."]},
+      {"stage": 9, "name": "Natural Farming", "duration": "Throughout", "tasks": ["Crop rotation with sorghum or maize reduces soil-borne diseases.", "Neem cake at 200 kg/ha reduces soil pests.", "Avoid aflatoxin risk: harvest on time, dry quickly."], "warnings": ["Aflatoxin contamination is a serious public health risk—harvest before pods become over-mature; dry immediately."]},
+      {"stage": 10, "name": "Harvesting", "duration": "When leaves turn yellow and inner pod wall turns dark", "tasks": ["Manual digging or tractor-mounted digger.", "Shake off soil and windrow for field drying.", "Thresh within 3 days if rain threatens."], "warnings": []},
+      {"stage": 11, "name": "Drying and Storage", "duration": "Post harvest", "tasks": ["Dry pods to <9% moisture.", "Store in well-ventilated bags—avoid warm, humid conditions.", "Test for aflatoxin if storing for more than 2 months."], "warnings": ["Aflatoxin-contaminated groundnut is rejected by buyers and is dangerous to consume."]},
+      {"stage": 12, "name": "Market Guidance", "duration": "Post harvest", "tasks": ["Sell at APMC or through FPO.", "Groundnut oil price and de-oiled cake demand affects prices.", "Check MSP for groundnut announced by Government of India."], "warnings": ["Prices vary—verify at local mandi."]}
+    ]
+  },
+  "tomato": {
+    "crop_name": "Tomato",
+    "seasons": "Kharif, Rabi and Zaid (year-round with irrigation)",
+    "stages": [
+      {"stage": 1, "name": "Land Preparation", "duration": "2–3 weeks before transplanting", "tasks": ["Plough to 20–25 cm depth.", "Apply FYM 25–30 tonnes/ha and incorporate well.", "Prepare raised beds or ridges for good drainage.", "Sterilise nursery beds with solarisation (plastic cover for 4–6 weeks in summer)."], "warnings": []},
+      {"stage": 2, "name": "Soil Testing", "duration": "Before sowing", "tasks": ["Ideal pH: 6.0–7.0.", "Tomato needs calcium, magnesium and boron—check micronutrients.", "Apply lime if pH < 5.5."], "warnings": []},
+      {"stage": 3, "name": "Seed Selection and Nursery", "duration": "Prepare nursery 25–30 days before main field transplanting", "tasks": ["Use certified hybrid or open-pollinated variety seed.", "Sow in pro-trays with cocopeat-based media or raised nursery beds.", "Apply Trichoderma to nursery soil to prevent damping-off.", "Water nursery twice daily; avoid overwatering."], "warnings": ["Protect nursery from heavy rain and direct sun with shade net."]},
+      {"stage": 4, "name": "Transplanting", "duration": "Transplant 25–30 day old seedlings", "tasks": ["Row × plant spacing: 60 cm × 45 cm.", "Irrigate the main field before transplanting.", "Transplant in the evening to reduce transplant shock.", "Stake with bamboo poles at 30 days."], "warnings": []},
+      {"stage": 5, "name": "Irrigation", "duration": "Every 5–7 days depending on weather", "tasks": ["Drip irrigation is highly recommended for tomato.", "Critical stages: establishment, flowering and fruit setting.", "Avoid overwatering during fruit setting—causes blossom-end rot.", "Do not irrigate just before harvest."], "warnings": ["SAFETY: Same pump electrical safety rules."]},
+      {"stage": 6, "name": "Nutrient Management", "duration": "Basal + fertigations", "tasks": ["250:125:125 kg NPK per ha for hybrid tomato.", "Fertigation (fertiliser through drip) is most efficient.", "Calcium nitrate application during fruit development prevents blossom-end rot.", "Foliar spray of 0.5% potassium nitrate at fruit setting improves quality."], "warnings": []},
+      {"stage": 7, "name": "Weed Management", "duration": "0–30 days", "tasks": ["Mulching with black plastic or organic material suppresses weeds and conserves moisture.", "Manual weeding in uncovered areas.", "Staking also reduces weed competition in the row."], "warnings": []},
+      {"stage": 8, "name": "Pest and Disease Monitoring", "duration": "Weekly scouting", "tasks": ["Scout for fruit borer (Helicoverpa), aphids, whitefly, leaf miner and spider mites.", "Monitor for early blight, late blight, leaf curl virus and bacterial wilt.", "Yellow sticky traps for whitefly and aphid monitoring.", "Remove and destroy infected plant parts immediately."], "warnings": ["SAFETY: Always wear PPE during pesticide application.", "Do not consume fruit before observing the pre-harvest interval (PHI) on the pesticide label."]},
+      {"stage": 9, "name": "Natural Farming", "duration": "Throughout", "tasks": ["Trichoderma viride soil application prevents soil-borne diseases.", "Neem oil spray (3 ml/L) for early pest management.", "Install pheromone traps for fruit borer.", "Yellow sticky traps at 20 per ha for whitefly."], "warnings": []},
+      {"stage": 10, "name": "Harvesting", "duration": "50–60 days after transplanting; 8–10 pickings", "tasks": ["Harvest at breaker stage (50–60% red) for long-distance markets.", "Harvest ripe-red for local markets.", "Pick by hand; avoid bruising.", "Grade into A, B, C sizes before packing."], "warnings": ["Do not apply any pesticide within the pre-harvest interval.", "SAFETY: Handle pesticide-treated fruit with gloves."]},
+      {"stage": 11, "name": "Storage and Packing", "duration": "Post harvest", "tasks": ["Store at 12–18°C for 2–3 weeks (if cool chain available).", "Pack in perforated cartons or crates.", "Avoid stacking heavy weight on packed boxes."], "warnings": ["Tomato is highly perishable—market promptly to avoid losses."]},
+      {"stage": 12, "name": "Market Guidance", "duration": "Post harvest", "tasks": ["Monitor local mandi prices daily.", "Graded tomato fetches premium price.", "FPO or contract farming arrangements provide better price stability.", "Consider processing (puree, paste) during glut periods when fresh price collapses."], "warnings": ["Tomato prices are highly volatile—do not invest heavily based on one season's price."]}
+    ]
+  }
+}

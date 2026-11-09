@@ -1,0 +1,292 @@
+{
+  "_disclaimer": "This mapping is indicative only and based on broad agro-climatic conditions. Actual crop suitability depends on district-level soil, water, climate and local market conditions. Always consult your local KVK or state agriculture department before finalising crop selection.",
+  "_data_coverage": "Detailed demo data available for Tamil Nadu, Andhra Pradesh and Maharashtra. Other states have general indicative data.",
+  "Andhra Pradesh": {
+    "suitable_crops": ["rice", "groundnut", "chilli", "cotton", "tobacco", "turmeric", "black_gram", "green_gram", "jowar", "maize", "banana", "mango", "sugarcane"],
+    "demo_districts": ["Guntur", "Krishna", "Kurnool", "Nellore", "Visakhapatnam", "East Godavari", "West Godavari", "Chittoor", "Kadapa", "Anantapur"],
+    "agro_climate": "Tropical; hot and humid coastal; semi-arid inland. Annual rainfall 900-1200mm. Kharif dominant.",
+    "kharif_crops": ["rice", "groundnut", "cotton", "maize", "pigeon_pea", "black_gram", "chilli"],
+    "rabi_crops": ["groundnut", "chilli", "jowar", "wheat_limited", "black_gram", "green_gram"],
+    "major_soil": "Red loamy, alluvial coastal, black cotton in some districts"
+  },
+  "Tamil Nadu": {
+    "suitable_crops": ["rice", "sugarcane", "groundnut", "cotton", "banana", "coconut", "black_gram", "green_gram", "maize", "ragi", "jowar", "turmeric", "ginger", "tomato", "chilli"],
+    "demo_districts": ["Coimbatore", "Salem", "Thanjavur", "Tiruchirapalli", "Madurai", "Dindigul", "Vellore", "Erode", "Tirunelveli", "Namakkal"],
+    "agro_climate": "Tropical; high rainfall in Cauvery delta; semi-arid in western districts. Northeast monsoon dominant.",
+    "kharif_crops": ["rice", "groundnut", "cotton", "maize", "black_gram", "green_gram"],
+    "rabi_crops": ["rice", "groundnut", "sugarcane", "black_gram", "vegetables"],
+    "major_soil": "Alluvial in delta; red laterite in upland; black cotton in some areas"
+  },
+  "Maharashtra": {
+    "suitable_crops": ["soybean", "cotton", "jowar", "bajra", "sugarcane", "onion", "tomato", "wheat", "rice", "tur", "chickpea", "groundnut", "banana", "grapes", "pomegranate"],
+    "demo_districts": ["Pune", "Nashik", "Aurangabad", "Nagpur", "Kolhapur", "Satara", "Ahmednagar", "Solapur", "Latur", "Sangli"],
+    "agro_climate": "Diverse; heavy monsoon on western Ghats coast; semi-arid in Marathwada and Vidarbha. Kharif dominant.",
+    "kharif_crops": ["soybean", "cotton", "jowar", "bajra", "rice", "pigeon_pea"],
+    "rabi_crops": ["wheat", "chickpea", "jowar", "onion", "sugarcane"],
+    "major_soil": "Black cotton (Vertisols) dominant; red and laterite in coastal/hilly areas"
+  },
+  "Uttar Pradesh": {
+    "suitable_crops": ["wheat", "rice", "sugarcane", "potato", "maize", "mustard", "chickpea", "pigeon_pea", "green_gram", "black_gram"],
+    "demo_districts": [],
+    "agro_climate": "Sub-tropical; fertile Indo-Gangetic plains. Rabi wheat-rice system dominant.",
+    "kharif_crops": ["rice", "maize", "pigeon_pea", "sugarcane"],
+    "rabi_crops": ["wheat", "mustard", "potato", "chickpea"],
+    "major_soil": "Alluvial (Indo-Gangetic plains)"
+  },
+  "Punjab": {
+    "suitable_crops": ["wheat", "rice", "cotton", "maize", "sugarcane", "mustard"],
+    "demo_districts": [],
+    "agro_climate": "Sub-tropical; fertile alluvial plains; intensive irrigation from rivers. Rice-wheat rotation dominant.",
+    "kharif_crops": ["rice", "cotton", "maize"],
+    "rabi_crops": ["wheat", "mustard"],
+    "major_soil": "Alluvial (deep fertile)"
+  },
+  "Haryana": {
+    "suitable_crops": ["wheat", "rice", "mustard", "cotton", "bajra", "sugarcane", "jowar"],
+    "demo_districts": [],
+    "agro_climate": "Semi-arid to sub-humid; plains with good irrigation. Rice-wheat belt.",
+    "kharif_crops": ["rice", "cotton", "bajra"],
+    "rabi_crops": ["wheat", "mustard"],
+    "major_soil": "Alluvial; some sandy in western districts"
+  },
+  "Madhya Pradesh": {
+    "suitable_crops": ["soybean", "wheat", "rice", "chickpea", "mustard", "jowar", "maize", "pigeon_pea", "cotton", "groundnut"],
+    "demo_districts": [],
+    "agro_climate": "Sub-tropical; plateau with variable rainfall. Largest soybean and chickpea producer.",
+    "kharif_crops": ["soybean", "rice", "maize", "cotton", "pigeon_pea"],
+    "rabi_crops": ["wheat", "chickpea", "mustard"],
+    "major_soil": "Black cotton, red loamy, alluvial in valleys"
+  },
+  "Rajasthan": {
+    "suitable_crops": ["bajra", "mustard", "wheat", "jowar", "groundnut", "chickpea", "sesame"],
+    "demo_districts": [],
+    "agro_climate": "Arid to semi-arid; limited water resources. Bajra and mustard are staples.",
+    "kharif_crops": ["bajra", "jowar", "groundnut", "sesame"],
+    "rabi_crops": ["wheat", "mustard", "chickpea"],
+    "major_soil": "Sandy, sandy loam; some alluvial in eastern districts"
+  },
+  "Gujarat": {
+    "suitable_crops": ["cotton", "groundnut", "wheat", "bajra", "jowar", "sugarcane", "banana", "cumin", "mustard"],
+    "demo_districts": [],
+    "agro_climate": "Semi-arid to arid; largest cotton and groundnut producer.",
+    "kharif_crops": ["cotton", "groundnut", "bajra"],
+    "rabi_crops": ["wheat", "mustard", "cumin"],
+    "major_soil": "Black cotton, sandy loam, alluvial"
+  },
+  "Karnataka": {
+    "suitable_crops": ["rice", "ragi", "maize", "jowar", "cotton", "sunflower", "groundnut", "coconut", "coffee", "sugarcane", "tomato"],
+    "demo_districts": [],
+    "agro_climate": "Diverse; coastal humid to semi-arid plateau. Important ragi, maize and coffee producer.",
+    "kharif_crops": ["rice", "ragi", "maize", "cotton", "groundnut"],
+    "rabi_crops": ["jowar", "sunflower", "wheat_limited"],
+    "major_soil": "Red laterite upland; alluvial in valleys; black cotton in some areas"
+  },
+  "Kerala": {
+    "suitable_crops": ["rice", "coconut", "banana", "rubber", "tea", "coffee", "pepper", "ginger", "tapioca", "jackfruit"],
+    "demo_districts": [],
+    "agro_climate": "Tropical humid; high rainfall along Western Ghats coast. Plantation crops dominant.",
+    "kharif_crops": ["rice", "tapioca", "ginger"],
+    "rabi_crops": ["rice", "vegetables"],
+    "major_soil": "Laterite (acidic), alluvial in coastal areas"
+  },
+  "Telangana": {
+    "suitable_crops": ["rice", "cotton", "maize", "jowar", "turmeric", "chilli", "groundnut", "soybean", "pigeon_pea"],
+    "demo_districts": [],
+    "agro_climate": "Tropical semi-arid to sub-humid; Telangana plateau. Rice and cotton major crops.",
+    "kharif_crops": ["rice", "cotton", "maize", "pigeon_pea"],
+    "rabi_crops": ["jowar", "groundnut", "chilli"],
+    "major_soil": "Red loamy, black cotton"
+  },
+  "West Bengal": {
+    "suitable_crops": ["rice", "jute", "potato", "wheat", "maize", "mustard", "tea", "sugarcane", "vegetables"],
+    "demo_districts": [],
+    "agro_climate": "Tropical humid; delta and plains. Rice and jute dominant; tea in North Bengal.",
+    "kharif_crops": ["rice", "jute", "maize"],
+    "rabi_crops": ["potato", "wheat", "mustard", "vegetables"],
+    "major_soil": "Alluvial (fertile Gangetic delta)"
+  },
+  "Bihar": {
+    "suitable_crops": ["rice", "wheat", "maize", "potato", "sugarcane", "mustard", "chickpea"],
+    "demo_districts": [],
+    "agro_climate": "Sub-tropical; fertile Indo-Gangetic plains; flooding risk in north.",
+    "kharif_crops": ["rice", "maize", "sugarcane"],
+    "rabi_crops": ["wheat", "potato", "mustard", "chickpea"],
+    "major_soil": "Alluvial"
+  },
+  "Odisha": {
+    "suitable_crops": ["rice", "groundnut", "maize", "jowar", "turmeric", "ginger", "jute", "sugarcane"],
+    "demo_districts": [],
+    "agro_climate": "Tropical humid; coastal and hilly. Rice dominant; significant turmeric and ginger.",
+    "kharif_crops": ["rice", "maize", "groundnut", "ginger", "turmeric"],
+    "rabi_crops": ["mustard", "wheat_limited"],
+    "major_soil": "Alluvial coastal, red loamy"
+  },
+  "Assam": {
+    "suitable_crops": ["rice", "tea", "jute", "sugarcane", "mustard", "ginger", "turmeric", "banana"],
+    "demo_districts": [],
+    "agro_climate": "Tropical humid; high rainfall. Rice, tea and jute dominant.",
+    "kharif_crops": ["rice", "jute", "sugarcane"],
+    "rabi_crops": ["mustard", "wheat_limited"],
+    "major_soil": "Alluvial (Brahmaputra valley)"
+  },
+  "Himachal Pradesh": {
+    "suitable_crops": ["apple", "wheat", "maize", "potato", "tea", "ginger", "vegetables"],
+    "demo_districts": [],
+    "agro_climate": "Temperate mountainous; apple belt in mid-hills; wheat in valley floors.",
+    "kharif_crops": ["maize", "rice_limited", "ginger"],
+    "rabi_crops": ["wheat", "potato"],
+    "major_soil": "Sandy loam (hilly), alluvial (valleys)"
+  },
+  "Jammu & Kashmir": {
+    "suitable_crops": ["apple", "wheat", "maize", "rice", "saffron", "walnut", "cherry"],
+    "demo_districts": [],
+    "agro_climate": "Temperate to alpine; apple orchards in mid-hills; saffron in Pampore.",
+    "kharif_crops": ["rice", "maize"],
+    "rabi_crops": ["wheat", "apple"],
+    "major_soil": "Sandy loam, loamy (valley floors)"
+  },
+  "Uttarakhand": {
+    "suitable_crops": ["wheat", "rice", "maize", "apple", "potato", "ginger", "tea"],
+    "demo_districts": [],
+    "agro_climate": "Sub-tropical plains to alpine; diverse agro-climatic zones.",
+    "kharif_crops": ["rice", "maize"],
+    "rabi_crops": ["wheat", "potato"],
+    "major_soil": "Sandy loam (hills), alluvial (plains)"
+  },
+  "Jharkhand": {
+    "suitable_crops": ["rice", "maize", "wheat", "mustard", "vegetables", "ragi"],
+    "demo_districts": [],
+    "agro_climate": "Sub-tropical; plateau with moderate rainfall. Rice dominant.",
+    "kharif_crops": ["rice", "maize", "ragi"],
+    "rabi_crops": ["wheat", "mustard"],
+    "major_soil": "Red loamy, sandy loam"
+  },
+  "Chhattisgarh": {
+    "suitable_crops": ["rice", "maize", "soybean", "wheat", "vegetables"],
+    "demo_districts": [],
+    "agro_climate": "Sub-tropical; major rice bowl state. Traditional paddy varieties preserved.",
+    "kharif_crops": ["rice", "maize", "soybean"],
+    "rabi_crops": ["wheat", "chickpea"],
+    "major_soil": "Red loamy, sandy loam"
+  },
+  "Goa": {
+    "suitable_crops": ["rice", "coconut", "cashew", "areca_nut", "banana", "vegetables"],
+    "demo_districts": [],
+    "agro_climate": "Tropical humid coastal; high rainfall. Plantation crops important.",
+    "kharif_crops": ["rice"],
+    "rabi_crops": ["vegetables"],
+    "major_soil": "Laterite, alluvial"
+  },
+  "Meghalaya": {
+    "suitable_crops": ["rice", "maize", "potato", "ginger", "turmeric", "tea"],
+    "demo_districts": [],
+    "agro_climate": "Subtropical hilly; one of highest rainfall areas in India. Diverse horticulture.",
+    "kharif_crops": ["rice", "maize", "ginger"],
+    "rabi_crops": ["potato", "vegetables"],
+    "major_soil": "Sandy loam, red loamy"
+  },
+  "Manipur": {
+    "suitable_crops": ["rice", "maize", "vegetables", "ginger", "potato"],
+    "demo_districts": [],
+    "agro_climate": "Sub-tropical hilly; rice dominant.",
+    "kharif_crops": ["rice", "maize"],
+    "rabi_crops": ["potato", "vegetables"],
+    "major_soil": "Alluvial (valley), loamy (hills)"
+  },
+  "Mizoram": {
+    "suitable_crops": ["rice", "maize", "ginger", "turmeric", "banana", "vegetables"],
+    "demo_districts": [],
+    "agro_climate": "Sub-tropical hilly; jhum (shifting) cultivation practiced.",
+    "kharif_crops": ["rice", "maize"],
+    "rabi_crops": ["vegetables"],
+    "major_soil": "Loamy, red laterite"
+  },
+  "Nagaland": {
+    "suitable_crops": ["rice", "maize", "ginger", "vegetables", "potato"],
+    "demo_districts": [],
+    "agro_climate": "Sub-tropical to temperate hilly; terrace paddy cultivation.",
+    "kharif_crops": ["rice", "maize"],
+    "rabi_crops": ["potato", "vegetables"],
+    "major_soil": "Loamy, sandy loam"
+  },
+  "Tripura": {
+    "suitable_crops": ["rice", "jute", "sugarcane", "banana", "vegetables"],
+    "demo_districts": [],
+    "agro_climate": "Tropical humid; rice and plantation crops.",
+    "kharif_crops": ["rice", "jute"],
+    "rabi_crops": ["vegetables"],
+    "major_soil": "Alluvial"
+  },
+  "Sikkim": {
+    "suitable_crops": ["rice", "maize", "cardamom", "ginger", "potato", "vegetables"],
+    "demo_districts": [],
+    "agro_climate": "Sub-tropical to temperate hilly; 100% organic state.",
+    "kharif_crops": ["rice", "maize", "cardamom"],
+    "rabi_crops": ["potato", "vegetables"],
+    "major_soil": "Sandy loam, loamy (acidic)"
+  },
+  "Arunachal Pradesh": {
+    "suitable_crops": ["rice", "maize", "apple", "ginger", "vegetables", "orange"],
+    "demo_districts": [],
+    "agro_climate": "Sub-tropical to alpine; diverse mountain ecology.",
+    "kharif_crops": ["rice", "maize"],
+    "rabi_crops": ["apple", "vegetables"],
+    "major_soil": "Sandy loam, loamy"
+  },
+  "Andaman and Nicobar Islands": {
+    "suitable_crops": ["rice", "coconut", "banana", "vegetables", "spices"],
+    "demo_districts": [],
+    "agro_climate": "Tropical humid island; coconut and rice dominant.",
+    "kharif_crops": ["rice", "coconut"],
+    "rabi_crops": ["vegetables"],
+    "major_soil": "Sandy, loamy"
+  },
+  "Lakshadweep": {
+    "suitable_crops": ["coconut", "banana", "vegetables"],
+    "demo_districts": [],
+    "agro_climate": "Tropical island; very limited agricultural land. Coconut dominant.",
+    "kharif_crops": ["coconut"],
+    "rabi_crops": ["vegetables"],
+    "major_soil": "Sandy coral"
+  },
+  "Chandigarh": {
+    "suitable_crops": ["wheat", "rice", "vegetables"],
+    "demo_districts": [],
+    "agro_climate": "Urban union territory; limited agriculture.",
+    "kharif_crops": ["rice"],
+    "rabi_crops": ["wheat"],
+    "major_soil": "Alluvial"
+  },
+  "Delhi": {
+    "suitable_crops": ["wheat", "vegetables", "mustard"],
+    "demo_districts": [],
+    "agro_climate": "Urban; limited peri-urban agriculture.",
+    "kharif_crops": ["maize", "vegetables"],
+    "rabi_crops": ["wheat", "mustard"],
+    "major_soil": "Alluvial"
+  },
+  "Puducherry": {
+    "suitable_crops": ["rice", "groundnut", "sugarcane", "vegetables", "coconut"],
+    "demo_districts": [],
+    "agro_climate": "Tropical coastal; part of Tamil Nadu agro-climatic zone.",
+    "kharif_crops": ["rice", "groundnut"],
+    "rabi_crops": ["groundnut", "vegetables"],
+    "major_soil": "Alluvial, sandy loam"
+  },
+  "Dadra and Nagar Haveli and Daman and Diu": {
+    "suitable_crops": ["rice", "wheat", "vegetables", "sugarcane"],
+    "demo_districts": [],
+    "agro_climate": "Tropical; limited area; rice dominant.",
+    "kharif_crops": ["rice"],
+    "rabi_crops": ["wheat", "vegetables"],
+    "major_soil": "Loamy"
+  },
+  "Ladakh": {
+    "suitable_crops": ["wheat", "barley", "pea", "apple", "apricot", "vegetables"],
+    "demo_districts": [],
+    "agro_climate": "Cold arid; high altitude Himalayan desert. Short growing season.",
+    "kharif_crops": ["barley", "pea"],
+    "rabi_crops": ["wheat"],
+    "major_soil": "Sandy loam, rocky"
+  }
+}

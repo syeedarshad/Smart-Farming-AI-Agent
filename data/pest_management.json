@@ -1,0 +1,255 @@
+{
+  "_note": "Pest and disease guidance follows Integrated Pest Management (IPM) principles from ICAR, state agriculture departments and KVK resources. Chemical recommendations are general guidelines only. Always confirm pest identity, population level and registered product availability with your local agricultural officer before applying any pesticide. Never apply pesticides above recommended rates. Follow all label instructions, safety precautions and re-entry/pre-harvest intervals.",
+  "crops": [
+    {
+      "crop_id": "rice",
+      "crop_name": "Rice (Paddy)",
+      "pests_diseases": [
+        {
+          "id": "rice_stem_borer",
+          "type": "pest",
+          "name": "Stem Borer (Scirpophaga incertulas / Chilo suppressalis)",
+          "symptoms": ["Dead hearts (central leaf shoot dies while remaining leaves stay green) during vegetative stage.", "White ears (panicle completely white with no grain) during reproductive stage.", "Entry holes at the base of tillers.", "Frass (excrement) inside bored stems."],
+          "favorable_conditions": "High humidity, dense crop canopy, excessive nitrogen application.",
+          "ipm_approach": [
+            "Use resistant or tolerant varieties recommended by your state agriculture department.",
+            "Clip seedling tips before transplanting to remove egg masses.",
+            "Avoid excessive nitrogen fertilisation which promotes lush vegetative growth attractive to borers.",
+            "Set up light traps at 1 per ha to attract and monitor adults.",
+            "Release egg parasitoid Trichogramma japonicum at 1.5 lakh eggs/ha when eggs are observed.",
+            "Pheromone traps for monitoring (not for control).",
+            "Apply registered chemical insecticide only when dead heart incidence exceeds 10% during vegetative stage or white ear incidence exceeds 5% at heading—consult local agricultural officer for current ETL and registered products."
+          ],
+          "when_to_seek_expert": "If dead heart incidence exceeds 25% or entire field shows white ears, contact your local agricultural officer immediately.",
+          "chemical_guidance_note": "Registered organophosphate and pyrethroid formulations are available for rice stem borer. Consult local agricultural officer for product names and doses registered in your state. Always follow label directions."
+        },
+        {
+          "id": "rice_blast",
+          "type": "disease",
+          "name": "Rice Blast (Magnaporthe oryzae)",
+          "symptoms": ["Diamond-shaped or spindle-shaped lesions on leaves with grey centre and brown border (leaf blast).", "Dark brown lesions at collar node causing entire panicle to become white (neck blast/collar rot).", "Node blast causes stem breakage at node."],
+          "favorable_conditions": "High humidity (>90%), prolonged leaf wetness, cool nights (20–22°C), dense canopy, excess nitrogen.",
+          "ipm_approach": [
+            "Use blast-resistant varieties wherever possible.",
+            "Avoid excessive nitrogen application—split into 3 doses and avoid large single doses.",
+            "Maintain proper spacing for good air circulation.",
+            "Drain fields periodically to reduce humidity in the canopy.",
+            "Monitor fields weekly from 3 weeks after transplanting.",
+            "Seed treatment with Trichoderma viride reduces early blast infection.",
+            "Apply fungicide at first sign of disease or preventively before heading—consult local agricultural officer for registered fungicide options and timing."
+          ],
+          "when_to_seek_expert": "If neck blast symptoms appear before or during heading, contact agricultural officer or KVK urgently as this can cause total yield loss.",
+          "chemical_guidance_note": "Several fungicides are registered for rice blast. Tricyclazole is commonly used but confirm registration in your state. Follow label exactly for dose, timing and number of applications."
+        },
+        {
+          "id": "brown_planthopper",
+          "type": "pest",
+          "name": "Brown Planthopper (Nilaparvata lugens - BPH)",
+          "symptoms": ["Circular yellowing patches in the field (hopper burn).", "Hoppers congregate at base of plant near waterline.", "Wilting and drying of entire tiller clumps.", "Honeydew secretion on lower stem."],
+          "favorable_conditions": "Continuous flooding, excess nitrogen, dense planting, prophylactic insecticide use killing natural enemies.",
+          "ipm_approach": [
+            "Use BPH-resistant varieties (Samba Mahsuri, BPT 5204 and similar variety-specific resistance).",
+            "Avoid excessive nitrogen application.",
+            "Maintain proper spacing for air circulation.",
+            "Do NOT apply synthetic pyrethroids against BPH—they kill natural enemies and cause BPH resurgence.",
+            "Monitor at 5–7 random spots; if >5–10 hoppers per hill, seek advice on threshold-based control.",
+            "Apply registered systemic insecticide only when population exceeds ETL—consult agricultural officer."
+          ],
+          "when_to_seek_expert": "Hopper burn spreading across the field requires urgent professional consultation. Incorrect insecticide choice causes severe resurgence.",
+          "chemical_guidance_note": "Neonicotinoids and buprofezin are registered against BPH in most states but check for resistance patterns in your area. NEVER use pyrethroids—they cause BPH outbreaks."
+        }
+      ]
+    },
+    {
+      "crop_id": "wheat",
+      "crop_name": "Wheat",
+      "pests_diseases": [
+        {
+          "id": "wheat_yellow_rust",
+          "type": "disease",
+          "name": "Yellow Rust / Stripe Rust (Puccinia striiformis)",
+          "symptoms": ["Bright yellow-orange pustules (uredinia) in long stripes parallel to leaf veins.", "Yellow powdery dust rubs off on fingers.", "Severe infection causes leaf death and significant yield loss."],
+          "favorable_conditions": "Cool temperature (10–15°C), high humidity, dense canopy, susceptible varieties.",
+          "ipm_approach": [
+            "Use resistant varieties—check current race virulence status with ICAR-IIWBR for your region.",
+            "Avoid late sowing which coincides with peak rust-favourable conditions.",
+            "Monitor fields from January onwards in North India.",
+            "If stripe rust appears, apply registered fungicide immediately—early application is critical.",
+            "Remove alternate hosts from field surroundings."
+          ],
+          "when_to_seek_expert": "Yellow rust spreads very rapidly. Contact agricultural officer at first sign—do not delay fungicide decision.",
+          "chemical_guidance_note": "Triazole fungicides (propiconazole, tebuconazole) are widely registered for wheat rust. Confirm specific product registration and dose with local officer."
+        },
+        {
+          "id": "wheat_aphid",
+          "type": "pest",
+          "name": "Wheat Aphid (Sitobion avenae / Rhopalosiphum padi)",
+          "symptoms": ["Dense colonies of small yellow-green insects on leaves and ears.", "Honeydew secretion causes sooty mould.", "Plant stunting in severe infestation."],
+          "favorable_conditions": "Mild winter temperatures (15–22°C), cloudy weather, absence of natural enemies.",
+          "ipm_approach": [
+            "Natural enemy conservation—ladybird beetles (Coccinellids), lacewings and parasitic wasps are important aphid controllers.",
+            "Do not apply insecticides prophylactically during early season—kills natural enemies.",
+            "Spray water jets on small infestations to dislodge aphids.",
+            "Monitor economic threshold: 10–15 aphids per tiller during grain filling.",
+            "If threshold exceeded, consult local agricultural officer for registered insecticide option."
+          ],
+          "when_to_seek_expert": "If natural enemy population is low and aphid infestation exceeds ETL during grain filling, seek immediate advice.",
+          "chemical_guidance_note": "Imidacloprid or thiamethoxam as seed treatment provides early season protection. Contact insecticides may be needed at grain-filling stage if ETL exceeded. Consult label."
+        }
+      ]
+    },
+    {
+      "crop_id": "cotton",
+      "crop_name": "Cotton",
+      "pests_diseases": [
+        {
+          "id": "cotton_bollworm",
+          "type": "pest",
+          "name": "American Bollworm / Helicoverpa (Helicoverpa armigera)",
+          "symptoms": ["Round entry holes on flower buds (squares), flowers and bolls.", "Frass (excrement) and webbing around damaged bolls.", "Internal tunnelling in bolls causes premature boll opening."],
+          "favorable_conditions": "Warm dry conditions; adult moths lay eggs on tender shoots and squares.",
+          "ipm_approach": [
+            "Install pheromone traps at 5 per ha from crop emergence to monitor adult moth population.",
+            "Release Trichogramma chilonis (egg parasitoid) at 1.5 lakh eggs/ha at flowering stage.",
+            "Use NPV (Nuclear Polyhedrosis Virus) formulation during evening spray at flowering stage.",
+            "Remove damaged squares and bolls and destroy (deep burial or burning away from field).",
+            "Action threshold: 5+ moths per trap per night or 5% infested squares. Consult local agricultural officer.",
+            "Use registered insecticide only above ETL—rotate classes to manage resistance."
+          ],
+          "when_to_seek_expert": "Helicoverpa has developed resistance to many insecticides. Contact agricultural officer for resistance management strategy.",
+          "chemical_guidance_note": "Bt (Bacillus thuringiensis) formulations, spinosad and emamectin benzoate are registered options. Confirm registration and resistance status in your district before use."
+        },
+        {
+          "id": "cotton_leaf_curl_virus",
+          "type": "disease",
+          "name": "Cotton Leaf Curl Virus (CLCuV) — transmitted by whitefly",
+          "symptoms": ["Upward or downward curling of leaves.", "Vein thickening, leaf cupping and dark green enations (leaf-like outgrowths on underside).", "Severe stunting; affected plants rarely produce marketable bolls."],
+          "favorable_conditions": "High whitefly (Bemisia tabaci) population; hot dry weather favours whitefly build-up.",
+          "ipm_approach": [
+            "NO CURE exists once a plant is infected—rogue out and destroy infected plants immediately.",
+            "Use CLCuV-tolerant varieties where available.",
+            "Manage whitefly population aggressively as it is the virus vector.",
+            "Yellow sticky traps at 20 per ha for monitoring.",
+            "Remove volunteer cotton plants and alternate host weeds.",
+            "Avoid broad-spectrum insecticide sprays that kill whitefly predators."
+          ],
+          "when_to_seek_expert": "If more than 20% of plants show CLCuV symptoms, consult agricultural officer. Entire crop may need to be destroyed to protect neighbours.",
+          "chemical_guidance_note": "Neonicotinoid insecticides (imidacloprid as seed treatment) reduce early whitefly infestation. Foliar sprays: consult label. Resistance to neonicotinoids is emerging in some whitefly populations."
+        }
+      ]
+    },
+    {
+      "crop_id": "tomato",
+      "crop_name": "Tomato",
+      "pests_diseases": [
+        {
+          "id": "tomato_fruit_borer",
+          "type": "pest",
+          "name": "Tomato Fruit Borer (Helicoverpa armigera)",
+          "symptoms": ["Round entry holes in fruits with frass.", "Larvae inside fruits cause rotting.", "Damaged fruits fall prematurely."],
+          "favorable_conditions": "High temperature (25–32°C); dry conditions; absence of natural enemies.",
+          "ipm_approach": [
+            "Install pheromone traps at 4–5 per ha for monitoring from transplanting.",
+            "Spray NPV (HaNPV) at 250 LE/ha at first sign of infestation during evening.",
+            "Release Chrysoperla (lacewing) at 50,000 eggs/ha.",
+            "Remove and destroy infested fruits.",
+            "Apply registered insecticide above ETL (>5% infested fruits). Observe pre-harvest interval strictly."
+          ],
+          "when_to_seek_expert": "Fruit borer resistance to pyrethroids is common. Seek advice on resistance management.",
+          "chemical_guidance_note": "Spinosad, emamectin benzoate and chlorantraniliprole are commonly registered. Observe PHI before harvest. Consult label and local extension."
+        },
+        {
+          "id": "tomato_early_blight",
+          "type": "disease",
+          "name": "Early Blight (Alternaria solani)",
+          "symptoms": ["Circular dark brown spots with concentric rings (target-board pattern) on older leaves.", "Spots have yellow halo.", "Severe infection defoliates the plant."],
+          "favorable_conditions": "Warm temperature (24–29°C), humidity, alternate wet and dry weather, overcrowded plants.",
+          "ipm_approach": [
+            "Use disease-resistant or tolerant varieties.",
+            "Maintain proper spacing for air circulation.",
+            "Avoid overhead irrigation; use drip irrigation.",
+            "Remove and destroy infected leaves.",
+            "Mulching reduces splash dispersal of soil-borne spores.",
+            "Apply registered fungicide preventively or at first sign of disease."
+          ],
+          "when_to_seek_expert": "If more than 50% leaves are affected, yield loss will be severe. Contact KVK or agricultural officer.",
+          "chemical_guidance_note": "Mancozeb, chlorothalonil and azoxystrobin-based fungicides are registered. Rotate modes of action. Consult label for dose and timing."
+        }
+      ]
+    },
+    {
+      "crop_id": "groundnut",
+      "crop_name": "Groundnut",
+      "pests_diseases": [
+        {
+          "id": "groundnut_tikka",
+          "type": "disease",
+          "name": "Tikka Leaf Spot (Cercospora arachidicola / Phaeoisariopsis personata)",
+          "symptoms": ["Small brown to dark spots with yellow halo on leaves (early tikka—smaller spots; late tikka—larger darker spots).", "Severe defoliation reduces photosynthesis and pod quality.", "Defoliation before maturity causes shrivelled seeds."],
+          "favorable_conditions": "High humidity, temperature 25–35°C, dense canopy, water splash.",
+          "ipm_approach": [
+            "Use resistant varieties where available.",
+            "Crop rotation with non-legume crops.",
+            "Maintain proper spacing.",
+            "Remove and destroy infected plant debris after harvest.",
+            "Apply registered fungicide at first sign (40–45 days after sowing)."
+          ],
+          "when_to_seek_expert": "If defoliation exceeds 30%, significant yield loss is likely. Consult agricultural officer.",
+          "chemical_guidance_note": "Mancozeb (0.2%), chlorothalonil or carbendazim-based fungicides are registered. Consult local officer for timing and number of sprays."
+        }
+      ]
+    },
+    {
+      "crop_id": "chilli",
+      "crop_name": "Chilli",
+      "pests_diseases": [
+        {
+          "id": "chilli_thrips",
+          "type": "pest",
+          "name": "Thrips (Scirtothrips dorsalis / Thrips palmi)",
+          "symptoms": ["Silvery-white streaks on leaves (feeding scars).", "Upward curling of leaves.", "Shortened internodes, distorted shoots.", "Severe infestation causes flower and fruit drop."],
+          "favorable_conditions": "Hot dry weather, drought-stressed plants.",
+          "ipm_approach": [
+            "Blue sticky traps at 20 per ha for monitoring.",
+            "Avoid excessive nitrogen application.",
+            "Mulching conserves moisture and reduces thrips build-up.",
+            "Neem oil spray (3 ml/L) for early-stage management.",
+            "Release predatory mites for biological control.",
+            "Apply registered insecticide above ETL. Rotate classes to prevent resistance."
+          ],
+          "when_to_seek_expert": "Thrips transmit virus. If virus symptoms (leaf curl) appear alongside thrips, consult immediately.",
+          "chemical_guidance_note": "Spinosad, fipronil and imidacloprid are registered for thrips. Resistance is common—rotate insecticide groups. Consult local officer."
+        },
+        {
+          "id": "chilli_anthracnose",
+          "type": "disease",
+          "name": "Anthracnose / Fruit Rot (Colletotrichum capsici / C. acutatum)",
+          "symptoms": ["Circular, sunken, dark tan to black lesions on ripe fruits.", "Pink or orange spore masses visible in moist conditions.", "Affected fruits rot and dry up on the plant."],
+          "favorable_conditions": "High humidity, warm temperature, rain splash, wounds from insects or harvesting.",
+          "ipm_approach": [
+            "Use disease-free certified seed.",
+            "Remove and destroy infected fruits immediately.",
+            "Avoid wetting foliage—use drip irrigation.",
+            "Apply registered fungicide preventively at fruit set.",
+            "Proper post-harvest hygiene."
+          ],
+          "when_to_seek_expert": "Widespread fruit rot at harvest leads to significant economic loss. Contact KVK for variety and fungicide recommendations.",
+          "chemical_guidance_note": "Carbendazim, mancozeb and copper-based fungicides are used. Consult label for dose and PHI before dry chilli harvest."
+        }
+      ]
+    }
+  ],
+  "general_ipm_principles": [
+    "Always correctly identify the pest or disease before taking any action.",
+    "Scout fields regularly—early detection allows lower-cost interventions.",
+    "Set action thresholds based on economic injury levels, not calendar-based spraying.",
+    "Prioritise cultural and biological methods; use chemical control as a last resort.",
+    "Rotate pesticide classes/modes of action to manage resistance.",
+    "Always follow pesticide label instructions for dose, timing, method and safety.",
+    "Observe re-entry intervals (REI) and pre-harvest intervals (PHI) on all pesticide labels.",
+    "Wear appropriate PPE (mask, gloves, goggles, protective clothing) during all pesticide operations.",
+    "Never eat, drink or smoke while applying pesticides.",
+    "Store pesticides locked and out of reach of children and animals.",
+    "Do not reuse pesticide containers."
+  ]
+}
