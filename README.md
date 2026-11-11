@@ -5,16 +5,23 @@
 [![Edunet Foundation Internship](https://img.shields.io/badge/Internship-Edunet%20Foundation-blueviolet.svg)](https://edunetfoundation.org/)
 [![Learning Focus IBM watsonx.ai](https://img.shields.io/badge/Learning%20Focus-IBM%20watsonx.ai%20%26%20Cloud-054ADA.svg)](https://www.ibm.com/watsonx)
 [![Retrieval scikit-learn](https://img.shields.io/badge/RAG-TF--IDF%20%2B%20Cosine-orange.svg)](https://scikit-learn.org/)
-[![License MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![License MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/license/mit/)
 
 **Smart Farming AI** is a multilingual agricultural advisory system developed as an internship project assigned by **Edunet Foundation**. The project represents a practical learning and development initiative focused on exploring **IBM watsonx.ai and IBM Cloud** technologies and applying artificial intelligence to real-world Indian agricultural use cases.
 
-The application combines a grounded **Retrieval-Augmented Generation (RAG)** pipeline with complete user interface localization in **English**, **Tamil (தமிழ்)**, **Telugu (తెలుగు)**, and **Hindi (हिंदी)**. It operates out of the box in **Demo Mode** using a verified offline agricultural knowledge base and includes built-in architecture for live cloud inference via **IBM Granite** on **watsonx.ai**.
+The application combines a grounded **Retrieval-Augmented Generation (RAG)** pipeline with user interface localization in **English**, **Tamil (தமிழ்)**, **Telugu (తెలుగు)**, and **Hindi (हिंदी)**. It supports live **IBM Granite** inference through **IBM watsonx.ai** and provides a clearly labeled local **Demo Mode** as a fallback and testing option, backed by the agricultural knowledge base.
+
+## Live Application
+
+- **Full application:** [Open Smart Farming AI](https://smart-farming-ai-agent-vbwt2aa878cqedgsyaxu9a.streamlit.app/)
+- **AI Farming Assistant:** [Open the AI Assistant](https://smart-farming-ai-agent-vbwt2aa878cqedgsyaxu9a.streamlit.app/AI_Farming_Assistant)
+- **Source code:** [GitHub repository](https://github.com/syeedarshad/Smart-Farming-AI-Agent)
 
 ---
 
 ## Table of Contents
 
+- [Live Application](#live-application)
 - [Project Overview](#project-overview)
 - [Internship Project](#internship-project)
 - [Key Features](#key-features)
@@ -27,6 +34,7 @@ The application combines a grounded **Retrieval-Augmented Generation (RAG)** pip
 - [Running the Application](#running-the-application)
 - [Running Tests](#running-tests)
 - [IBM Granite Integration](#ibm-granite-integration)
+- [Cotton Pest Management and Multilingual Retrieval](#cotton-pest-management-and-multilingual-retrieval)
 - [Data Sources and Limitations](#data-sources-and-limitations)
 - [Responsible AI & Guardrails](#responsible-ai--guardrails)
 - [Future Enhancements](#future-enhancements)
@@ -60,10 +68,10 @@ This application was developed as a practical internship assignment from **Edune
 
 The core objective of the internship was to gain hands-on, end-to-end experience in modern cloud and AI architectures by building a production-grade, socially impactful application. Key learning areas include:
 
-- **IBM AI & Cloud Ecosystem:** Understanding IBM watsonx.ai foundation models, API authentication via IBM Cloud IAM OAuth2 client flows, and token caching mechanisms.
+- **IBM AI & Cloud Ecosystem:** Understanding IBM watsonx.ai foundation models, IBM Cloud IAM OAuth2 authentication, token caching, REST inference, and SDK integration.
 - **Retrieval-Augmented Generation (RAG):** Implementing a grounded knowledge retrieval pipeline that anchors LLM generation strictly to domain-verified agricultural data.
 - **Multilingual Engineering:** Building an accessible, multi-lingual frontend tailored for regional diversity across Indian farming states.
-- **Responsible AI Principles:** Enforcing zero-hallucination constraints, safety card overrides, transparent demo mode labeling, and honest disclosure of live cloud connectivity status.
+- **Responsible AI Principles:** Enforcing zero-hallucination constraints, safety card overrides, transparent Demo Mode labeling, and honest reporting of live inference status.
 
 > **Educational Disclaimer:** This application is an educational internship submission developed under the academic framework of Edunet Foundation. IBM watsonx.ai and IBM Cloud are the learning technologies used; IBM does not officially own, sponsor, endorse, or certify this specific repository.
 
@@ -186,8 +194,8 @@ The application supports four Indian languages and provides fully localized farm
 | **Fallback LLM Provider** | Template Engine | Deterministic prompt-synthesis engine running on local JSON corpus |
 | **Knowledge Base** | Structured JSON | 7 curated domain files (crops, roadmaps, safety, pests, natural farming) |
 | **Data Processing & Viz** | Pandas, Plotly | Tabular market prices and interactive crop charts |
-| **Configuration** | `python-dotenv` | Standard 12-factor environment configuration |
-| **Test Suite** | `pytest` | 55 unit and integration tests |
+| **Configuration** | `python-dotenv`, Streamlit Secrets | Environment configuration locally and top-level Secrets on Community Cloud |
+| **Test Suite** | `pytest` | 62 tests and 23 subtests passed |
 
 ---
 
@@ -204,10 +212,10 @@ flowchart TD
     E --> F[Cosine Similarity Ranking & Top-K Extraction]
     F --> G[Grounded Context Synthesis]
     G --> H{LLM Provider Configured?}
-    H -- "LLM_PROVIDER=demo (Default)" --> I[Local Verified Response Generator]
+    H -- "Demo selected / IBM unavailable" --> I[Local Knowledge-Base Response Generator]
     H -- "LLM_PROVIDER=ibm_granite" --> J[IBM watsonx.ai API / SDK]
     J -- Success --> K[IBM Granite 4-H-Small Output]
-    J -- Missing / Failed Credentials --> L[Graceful Error Display - No Mock Granites]
+    J -- Missing / Failed Credentials --> L[Clearly Labeled Demo Fallback with Diagnostic]
     I --> M[Streamlit UI Display with Citations & Disclaimers]
     K --> M
     D --> M
@@ -217,7 +225,7 @@ flowchart TD
 ### Key Workflow Principles
 1. **Hazard Pre-emption:** Safety keywords (e.g., cyclone, lightning, chemical burn, electric shock) immediately trigger emergency safety cards from NDMA SACHET before processing standard crop queries.
 2. **Context-Grounded Answering:** Prompts enforce strict grounding in retrieved knowledge chunks. If the system lacks specific information, it states its limitations rather than hallucinating.
-3. **No Fabricated Granite Output:** If IBM Granite credentials are missing or call limits fail, the system reports the authentication/API state transparently; it does not substitute mock text under the Granite label.
+3. **No Fabricated Granite Output:** If IBM Granite credentials are missing or a live call fails, the system reports the state transparently and labels any local fallback as Demo Mode; it never presents demo text as a Granite response.
 
 ---
 
@@ -288,7 +296,8 @@ smart-farming-ai/
     ├── test_data_loader.py             # Verifies JSON integrity, chunk schemas, mappings
     ├── test_language_service.py        # Verifies 4-language coverage and translation fallbacks
     ├── test_rag_pipeline.py            # Tests RAG pipeline, safety checks, mock providers
-    └── test_retrieval.py               # Tests TF-IDF search, keyword scoring, Top-K filters
+    ├── test_retrieval.py               # Tests TF-IDF search, keyword scoring, Top-K filters
+    └── test_cloud_config.py            # Tests Streamlit Secrets and IBM REST request handling
 ```
 
 ---
@@ -352,11 +361,11 @@ By default, `.env` is configured with `LLM_PROVIDER=demo`, allowing full local f
 
 ## Environment Configuration
 
-The application reads configuration values exclusively through `src/config.py` using `python-dotenv`. Both primary short names (`WATSONX_*`) and backward-compatible prefix names (`IBM_WATSONX_*`) are supported.
+The application reads configuration through `src/config.py`. Local environment variables and the optional local dotenv configuration are supported; on Streamlit Community Cloud, top-level app Secrets are supported. Both primary short names (`WATSONX_*`) and backward-compatible prefix names (`IBM_WATSONX_*`) are accepted.
 
 | Environment Variable | Default Value | Description |
 |---|---|---|
-| `LLM_PROVIDER` | `demo` | Provider selector: `demo` (local deterministic) or `ibm_granite` (IBM watsonx.ai). |
+| `LLM_PROVIDER` | Automatically selected | `ibm_granite` when configured; otherwise `demo`. Set explicitly to `demo` to use the local fallback/testing mode. |
 | `WATSONX_API_KEY` *(or `IBM_WATSONX_API_KEY`)* | *(empty)* | IBM Cloud IAM API Key for watsonx.ai access. |
 | `WATSONX_PROJECT_ID` *(or `IBM_WATSONX_PROJECT_ID`)* | *(empty)* | Project ID associated with your watsonx.ai instance. |
 | `WATSONX_URL` *(or `IBM_WATSONX_URL`)* | `https://us-south.ml.cloud.ibm.com` | Regional endpoint for your IBM watsonx.ai service. |
@@ -417,9 +426,10 @@ python -m pytest tests/test_data_loader.py -v
 python -m pytest tests/test_language_service.py -v
 python -m pytest tests/test_retrieval.py -v
 python -m pytest tests/test_rag_pipeline.py -v
+python -m pytest tests/test_cloud_config.py -v
 ```
 
-*All 55 automated unit and integration tests validate knowledge consistency, localized string presence, anti-hallucination guardrails, and graceful error handling.*
+**Latest validation:** `pytest` passed **62 tests and 23 subtests**. Python compilation, agricultural JSON validation, and `git diff --check` also passed. The suite covers knowledge consistency, multilingual retrieval/localization, anti-hallucination guardrails, Streamlit Secrets configuration, IBM REST request handling, and graceful fallback behavior.
 
 ---
 
@@ -438,27 +448,36 @@ The integration is implemented in [`src/llm/ibm_granite_provider.py`](src/llm/ib
 
 ### Verification Status & Honest Disclosure
 > [!IMPORTANT]
-> **Implementation vs. Live Testing Status:**
-> - The code integration for IBM Granite (REST API client, SDK wrapper, OAuth2 token caching, RAG prompt injection, and error handlers) is **fully implemented** in `src/llm/ibm_granite_provider.py`.
-> - However, **live cloud connectivity and API inference have not been verified** due to pending active IBM Cloud / watsonx.ai credentials.
-> - When running with `LLM_PROVIDER=ibm_granite` without active credentials, the system gracefully reports the authentication status and does not generate simulated or fabricated Granite responses.
+> **Live verification:** IBM Granite is successfully configured and working in the deployed Streamlit Community Cloud application. Live inference has been verified. Responses are only identified as Granite-generated after a successful inference call; Demo Mode remains clearly labeled for fallback and testing.
 
-### How to Activate and Test IBM Granite
+### Streamlit Community Cloud Secrets
 1. Obtain an IBM Cloud account with access to **watsonx.ai**.
 2. Create an IBM Cloud IAM API Key and locate your watsonx.ai Project ID.
-3. Edit your `.env` file:
-   ```env
-   LLM_PROVIDER=ibm_granite
-   WATSONX_API_KEY=your_actual_ibm_cloud_api_key
-   WATSONX_PROJECT_ID=your_actual_watsonx_project_id
-   WATSONX_URL=https://us-south.ml.cloud.ibm.com
-   GRANITE_MODEL_ID=ibm/granite-4-h-small
+3. In Streamlit Community Cloud, open **App settings → Secrets** and add these top-level TOML values, replacing the placeholders with your IBM values:
+   ```toml
+   LLM_PROVIDER = "ibm_granite"
+   WATSONX_API_KEY = "<your IBM Cloud API key>"
+   WATSONX_PROJECT_ID = "<your watsonx.ai project ID>"
+   WATSONX_URL = "https://us-south.ml.cloud.ibm.com"
+   GRANITE_MODEL_ID = "ibm/granite-4-h-small"
+   IBM_CLOUD_IAM_URL = "https://iam.cloud.ibm.com/identity/token"
    ```
-4. Run the diagnostic smoke-test script to test credentials, IAM token generation, REST inference, and RAG integration:
+   Set `WATSONX_URL` to the endpoint for the same region as your watsonx.ai project. `IBM_CLOUD_IAM_URL` is optional unless your account uses a different IAM endpoint. Save Secrets and restart or reboot the app.
+4. To check IBM IAM authentication, REST inference, and RAG integration in another environment, run the diagnostic smoke-test script:
    ```powershell
    python scripts/test_ibm_connection.py
    ```
-5. Restart the Streamlit application to begin querying IBM Granite.
+5. Keep the API key and other credentials only in Streamlit Secrets or a secure local environment. **Never commit credentials, `.env` files, or secret values to GitHub.**
+
+## Cotton Pest Management and Multilingual Retrieval
+
+The RAG knowledge base includes a cotton organic and integrated pest-management guide. Retrieval recognizes cotton and related pest-management terms in English, Tamil, Telugu, and Hindi, helping localized questions find the relevant cotton guidance. The assistant returns its agricultural references with the answer and avoids inventing unsupported treatments or pesticide doses.
+
+Sources:
+
+- [TNAU: Organic Farming — Pest Management for Cotton](https://agritech.tnau.ac.in/org_farm/orgfarm_agripest_cotton.html)
+- [TNAU: Integrated Pest Management — Cotton](https://agritech.tnau.ac.in/crop_protection/crop_prot_ipm_cotton.html)
+- [ICAR: Kharif Agro-Advisories for Farmers 2025 (PDF)](https://www.icar.org.in/sites/default/files/Circulars/ICAR-En-Kharif-Agro-Advisories-for-Farmers-2025.pdf)
 
 ---
 
@@ -470,7 +489,7 @@ The integration is implemented in [`src/llm/ibm_granite_provider.py`](src/llm/ib
 - **Natural Farming Formulations:** National Centre of Organic and Natural Farming (NCONF) documentation.
 
 ### Limitations & Disclaimers
-- **Approximate Market Estimates:** Commodity prices presented in `Market Guidance` are **indicative historical estimates** for trend understanding. They are **NOT real-time mandi prices**. Mandi rates fluctuate continuously based on arrivals, variety, moisture content, and grade. Farmers must verify real-time prices at [AGMARKNET](https://agmarknet.nic.in) or [e-NAM](https://enam.gov.in).
+- **Approximate Market Estimates:** Commodity prices presented in `Market Guidance` are **indicative historical estimates** for trend understanding. They are **NOT real-time mandi prices**. Mandi rates fluctuate continuously based on arrivals, variety, moisture content, and grade. Farmers must verify real-time prices at [AGMARKNET](https://agmarknet.gov.in/home) or [e-NAM](https://enam.gov.in).
 - **Informational Aid Only:** This software is an educational and decision-support tool. It is not a certified replacement for on-ground agricultural extension officers, plant pathologists, or veterinary specialists.
 - **Offline Knowledge Boundary:** In Demo Mode, answers are strictly bounded by the curated JSON knowledge base. If a query falls outside the knowledge base, the system will explicitly indicate that information is unavailable.
 
