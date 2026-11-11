@@ -9,7 +9,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 import streamlit as st
 from src.config import APP_TITLE
 from src.language_service import get_label
-from src.shared_utils import inject_css, init_session_state, render_sidebar
+from src.shared_utils import APP_LOGO_DATA_URI, inject_css, init_session_state, render_sidebar
 from src.market_service import (
     get_all_commodities,
     format_price_table,
@@ -18,7 +18,7 @@ from src.market_service import (
     localize_market_unit,
 )
 
-st.set_page_config(page_title=f"Market Guidance — {APP_TITLE}", page_icon="💰", layout="wide")
+st.set_page_config(page_title=f"Market Guidance — {APP_TITLE}", page_icon=APP_LOGO_DATA_URI, layout="wide")
 
 inject_css()
 init_session_state()

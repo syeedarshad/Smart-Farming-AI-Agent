@@ -8,9 +8,9 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import streamlit as st
 from src.config import APP_TITLE, DATA_DIR, LLM_PROVIDER
 from src.language_service import LANGUAGE_CODES, get_label, localize_crop_term
-from src.shared_utils import inject_css, init_session_state, render_sidebar
+from src.shared_utils import APP_LOGO_DATA_URI, inject_css, init_session_state, render_sidebar
 
-st.set_page_config(page_title=APP_TITLE, page_icon="🌾", layout="wide", initial_sidebar_state="expanded")
+st.set_page_config(page_title=APP_TITLE, page_icon=APP_LOGO_DATA_URI, layout="wide", initial_sidebar_state="expanded")
 init_session_state()
 inject_css()
 lang = render_sidebar("home")

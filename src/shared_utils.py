@@ -10,6 +10,8 @@ Provides:
 """
 import sys
 import os
+import base64
+from pathlib import Path
 
 # Ensure project root is on sys.path so src/ imports work from pages/
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
@@ -17,6 +19,17 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 import streamlit as st
 from src.config import APP_TITLE, LLM_PROVIDER
 from src.language_service import LANGUAGE_CODES, get_label
+
+_APP_LOGO_PATH = Path(__file__).resolve().parent.parent / "assets" / "brand" / "smart_farming_logo.svg"
+
+
+def _app_logo_data_uri() -> str:
+    """Return the shared, project-local logo as an inline SVG image."""
+    encoded_logo = base64.b64encode(_APP_LOGO_PATH.read_bytes()).decode("ascii")
+    return f"data:image/svg+xml;base64,{encoded_logo}"
+
+
+APP_LOGO_DATA_URI = _app_logo_data_uri()
 
 
 # ── CSS ───────────────────────────────────────────────────────────────────────
@@ -834,14 +847,16 @@ def render_sidebar(page_title: str = "") -> str:
     The profile is preserved across language switches.
     """
     lang = st.session_state.lang_code
+    logo_uri = _app_logo_data_uri()
 
     with st.sidebar:
         # ── Logo and app name ──────────────────────────────────────────────
         st.markdown(
-            '<div style="padding: 0.2rem 0 0.6rem;">'
-            '<span style="font-size:1.3rem; font-weight:700; color:#F5F5F5; letter-spacing:-0.02em;">'
-            '🌾 Smart Farming AI'
-            '</span>'
+            '<div style="display:flex;align-items:center;gap:0.65rem;padding:0.2rem 0 0.7rem;">'
+            f'<img src="{logo_uri}" alt="Smart Farming AI logo" width="44" height="44" '
+            'style="display:block;flex:0 0 44px;">'
+            '<span style="font-size:1.1rem;font-weight:700;color:#F5F5F5;letter-spacing:-0.02em;line-height:1.15;">'
+            'Smart Farming AI</span>'
             '</div>',
             unsafe_allow_html=True,
         )

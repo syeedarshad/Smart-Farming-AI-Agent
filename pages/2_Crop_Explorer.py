@@ -7,9 +7,9 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 import streamlit as st
 from src.config import APP_TITLE, DATA_DIR
 from src.language_service import get_crop_description, get_label, localize_crop_term
-from src.shared_utils import inject_css, init_session_state, render_sidebar
+from src.shared_utils import APP_LOGO_DATA_URI, inject_css, init_session_state, render_sidebar
 
-st.set_page_config(page_title=f"{get_label('crop_explorer','en')} — {APP_TITLE}", page_icon="🌱", layout="wide")
+st.set_page_config(page_title=f"{get_label('crop_explorer','en')} — {APP_TITLE}", page_icon=APP_LOGO_DATA_URI, layout="wide")
 init_session_state()
 inject_css()
 lang = render_sidebar("crop_explorer")
