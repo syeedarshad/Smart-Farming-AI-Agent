@@ -4,6 +4,7 @@ TF-IDF + cosine similarity retrieval engine for the RAG pipeline.
 No native binary dependencies required.
 """
 import logging
+import re
 from typing import Optional
 
 import numpy as np
@@ -22,7 +23,43 @@ _QUERY_CONCEPTS = (
     (("pest", "pests", "insect", "insects", "பூச்சி", "பூச்சிகள்", "చీడపీడ", "పురుగ", "कीट"), "pest insect bollworm whitefly"),
     (("organic", "natural", "இயற்கை", "செயற்கை இல்லா", "సేంద్రియ", "సేంద్రీయ", "జైవిక", "जैविक", "प्राकृतिक"), "organic natural biological IPM"),
     (("manage", "management", "control", "கட்டுப்படுத்து", "கட்டுப்பாடு", "నిర్వహ", "నియంత్ర", "నివార", "प्रबंधन", "नियंत्र", "काबू"), "management control"),
+    (("rice", "paddy", "நெல்", "వరి", "धान"), "rice paddy"),
 )
+
+_LIFECYCLE_TERMS = (
+    "lifecycle", "life cycle", "crop cycle", "growth stages", "growth stage",
+    "crop stages", "stages of", "stage-wise", "stage wise",
+)
+_PEST_TERMS = (
+    "pest", "pests", "insect", "insects", "bollworm", "whitefly", "aphid",
+    "பூச்சி", "பூச்சிகள்", "சீமைப்பூச்சி", "చీడపీడ", "పురుగు", "कीट", "कीड़ों",
+)
+_NATURAL_FARMING_TERMS = (
+    "natural farming", "organic farming", "natural practice", "natural practices",
+    "compost", "vermicompost", "jeevamrutha", "soil health", "organic matter",
+    "இயற்கை விவசாய", "இயற்கை உரம்", "సహజ వ్యవసాయ", "సేంద్రియ వ్యవసాయ", "प्राकृतिक खेती",
+)
+
+
+def _contains_term(query: str, term: str) -> bool:
+    """Match whole Latin terms and native-script phrases without substring noise."""
+    if term.isascii() and re.fullmatch(r"[a-z0-9 ]+", term, flags=re.IGNORECASE):
+        return re.search(rf"(?<!\w){re.escape(term)}(?!\w)", query, flags=re.IGNORECASE) is not None
+    return term.casefold() in query.casefold()
+
+
+def _infer_safety_id(query: str) -> Optional[str]:
+    """Scope high-risk safety questions to the matching safety practice."""
+    electrical_terms = (
+        "electric", "electrical", "electrocution", "electrocute", "wiring",
+        "earthing", "rccb", "water pump", "pump motor", "water motor",
+        "irrigation pump", "மின்சார", "மின் பாதுகாப்பு", "విద్యుత్", "बिजली",
+    )
+    if any(_contains_term(query, term) for term in electrical_terms):
+        return "electrical_safety"
+    if any(_contains_term(query, term) for term in ("pesticide", "chemical exposure", "spray accident")):
+        return "pesticide_safety"
+    return None
 
 
 def _expanded_retrieval_query(query: str) -> str:
@@ -79,6 +116,7 @@ class KnowledgeRetriever:
         crop_filter: Optional[str] = None,
         state_filter: Optional[str] = None,
         topic_filter: Optional[str] = None,
+        safety_id_filter: Optional[str] = None,
     ) -> list[dict]:
         """
         Retrieve top_k most relevant chunks for the given query.
@@ -95,6 +133,14 @@ class KnowledgeRetriever:
         if not query or not query.strip():
             return []
 
+        # A topic hint narrows the candidate set before cosine ranking. This
+        # prevents shared words such as "irrigation" or "organic" from pulling
+        # in unrelated roadmaps when the question clearly names a domain.
+        if topic_filter is None:
+            topic_filter = self.infer_topic_filter(query)
+        if topic_filter == "safety" and safety_id_filter is None:
+            safety_id_filter = _infer_safety_id(query)
+
         query_vec = self._vectorizer.transform([query])
         scores = cosine_similarity(query_vec, self._matrix)[0]
         expanded_query = _expanded_retrieval_query(query)
@@ -105,15 +151,19 @@ class KnowledgeRetriever:
             # terms to rescue multilingual queries against the English corpus.
             scores = np.maximum(scores, expanded_scores)
 
-        # Apply metadata pre-filters to narrow the candidate set
+        # Apply metadata pre-filters to narrow the candidate set.
         candidate_indices = list(range(len(self._chunks)))
 
-        if crop_filter:
-            crop_filter_lower = crop_filter.lower()
+        effective_crop_filter = crop_filter or self._infer_crop_filter(query)
+
+        if effective_crop_filter:
+            crop_filter_lower = effective_crop_filter.lower()
             candidate_indices = [
                 i for i in candidate_indices
                 if crop_filter_lower in self._chunks[i].get("crop_id", "").lower()
                 or crop_filter_lower in self._chunks[i].get("crop_name", "").lower()
+                or self._chunks[i].get("crop_id") == "general"
+                or self._chunks[i].get("topic") in {"natural_farming", "safety"}
             ]
 
         if state_filter:
@@ -132,8 +182,14 @@ class KnowledgeRetriever:
                 if self._chunks[i].get("topic", "") == topic_filter
             ]
 
+        if safety_id_filter:
+            candidate_indices = [
+                i for i in candidate_indices
+                if self._chunks[i].get("safety_id") == safety_id_filter
+            ]
+
         if not candidate_indices:
-            candidate_indices = list(range(len(self._chunks)))
+            return []
 
         # Score and rank candidates
         ranked = sorted(
@@ -152,12 +208,56 @@ class KnowledgeRetriever:
 
         return results
 
+    def infer_topic_filter(self, query: str) -> Optional[str]:
+        """Infer a narrow knowledge domain for clearly scoped farm questions."""
+        if self.is_safety_query(query):
+            return "safety"
+        if any(_contains_term(query, term) for term in _LIFECYCLE_TERMS):
+            return "crop_lifecycle"
+        if any(_contains_term(query, term) for term in _PEST_TERMS):
+            return "pest_disease"
+        if any(_contains_term(query, term) for term in _NATURAL_FARMING_TERMS):
+            return "natural_farming"
+        return None
+
+    def _infer_crop_filter(self, query: str) -> Optional[str]:
+        """Detect crop names from indexed metadata when the farmer profile is blank."""
+        matches: list[tuple[int, str]] = []
+        seen: set[tuple[str, str]] = set()
+        for chunk in self._chunks:
+            crop_id = chunk.get("crop_id", "")
+            if not crop_id or crop_id == "general":
+                continue
+            aliases = [
+                crop_id.replace("_", " "),
+                chunk.get("crop_name", ""),
+                chunk.get("name_ta", ""),
+                chunk.get("name_te", ""),
+                chunk.get("name_hi", ""),
+            ]
+            for alias in aliases:
+                alias = str(alias).strip()
+                key = (crop_id, alias.casefold())
+                if not alias or key in seen:
+                    continue
+                seen.add(key)
+                if _contains_term(query, alias):
+                    matches.append((len(alias), crop_id))
+        return max(matches, default=(0, ""))[1] or None
+
     def search_safety(self, query: str) -> list[dict]:
         """
         Dedicated search scoped to safety topic only.
         Used when safety keywords are detected in the query.
         """
-        return self.search(query, top_k=3, topic_filter="safety", min_score=0.01)
+        safety_id = _infer_safety_id(query)
+        return self.search(
+            query,
+            top_k=9,
+            topic_filter="safety",
+            safety_id_filter=safety_id,
+            min_score=0.01,
+        )[:3]
 
     def is_safety_query(self, query: str) -> bool:
         """Check whether the query contains safety-critical keywords."""

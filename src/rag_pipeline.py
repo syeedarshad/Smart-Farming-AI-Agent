@@ -10,6 +10,7 @@ The LLM is explicitly instructed to answer only from the retrieved context
 and to clearly state when information is insufficient.
 """
 import logging
+import re
 from dataclasses import dataclass, field
 from typing import Optional
 
@@ -116,6 +117,7 @@ Your role is to provide accurate, safety-conscious agricultural guidance.
 
 IMPORTANT RULES:
 - Answer ONLY based on the retrieved knowledge provided below.
+- Cite each factual recommendation using the numbered excerpt marker, such as [1] or [2]. Cite only excerpts that support the claim.
 - If the retrieved knowledge does not contain enough information, say so clearly and suggest the farmer consult their local KVK or agricultural officer.
 - Do NOT invent weather alerts, market prices, pesticide names/doses or crop statistics.
 - Safety information always takes priority over productivity advice.
@@ -167,33 +169,23 @@ def run_rag(
             language_code=lang_code,
         )
 
-    # ── Step 1: Safety keyword detection ────────────────────────────────────
+    # ── Step 1: Retrieve only the best-fit topic and crop context ─────────────
     is_safety = retriever.is_safety_query(question) or force_safety
-    safety_chunks: list[dict] = []
     if is_safety:
-        safety_chunks = retriever.search_safety(question)
-        logger.info("Safety keywords detected. Prepending %d safety chunks.", len(safety_chunks))
-
-    # ── Step 2: Retrieve relevant chunks ─────────────────────────────────────
-    crop_filter = profile.get("crop_id") if profile else None
-    state_filter = profile.get("state") if profile else None
-
-    retrieved = retriever.search(
-        query=question,
-        top_k=top_k,
-        crop_filter=crop_filter,
-        state_filter=state_filter,
-    )
-
-    # Combine safety chunks (priority) + retrieved chunks (deduplicated)
-    seen_texts = set()
-    combined: list[dict] = []
-    for chunk in safety_chunks + retrieved:
-        if chunk["text"] not in seen_texts:
-            combined.append(chunk)
-            seen_texts.add(chunk["text"])
-
-    final_chunks = combined[:top_k + 2]  # allow a couple extra for safety
+        final_chunks = retriever.search_safety(question)[:top_k + 2]
+        logger.info("Safety keywords detected. Retrieved %d safety excerpts.", len(final_chunks))
+    else:
+        crop_filter = profile.get("crop_id") if profile else None
+        state_filter = profile.get("state") if profile else None
+        topic_filter = retriever.infer_topic_filter(question)
+        retrieval_limit = max(top_k + 2, 12) if topic_filter == "crop_lifecycle" else top_k + 2
+        final_chunks = retriever.search(
+            query=question,
+            top_k=retrieval_limit,
+            crop_filter=crop_filter,
+            state_filter=state_filter,
+            topic_filter=topic_filter,
+        )
 
     # ── Step 3: Build prompt ──────────────────────────────────────────────────
     prompt = _build_prompt(question, final_chunks, lang_code, profile)
@@ -223,9 +215,26 @@ def run_rag(
     if is_demo and lang_code != "en":
         raw_answer = get_label("demo_language_unavailable", lang_code)
 
-    # ── Step 6: Collect sources ───────────────────────────────────────────────
+    # ── Step 6: Show only cited context sources ────────────────────────────────
+    # DemoProvider includes every selected context excerpt in its response.
+    # Granite responses must cite numbered excerpts, so unused context is not
+    # presented as a source for the generated answer.
+    if provider_error or (is_demo and lang_code != "en"):
+        cited_chunks = []
+    elif is_demo:
+        cited_chunks = final_chunks
+    else:
+        citation_numbers = {
+            int(number) for number in re.findall(r"\[(\d+)\]", raw_answer)
+            if 1 <= int(number) <= len(final_chunks)
+        }
+        cited_chunks = [
+            chunk for number, chunk in enumerate(final_chunks, 1)
+            if number in citation_numbers
+        ]
+
     source_items: dict[str, str] = {}
-    for chunk in final_chunks:
+    for chunk in cited_chunks:
         references = chunk.get("references", [])
         if references:
             for reference in references:

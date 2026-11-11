@@ -10,6 +10,7 @@ import os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 import unittest
+import re
 from unittest.mock import patch
 
 
@@ -212,10 +213,17 @@ class TestRAGPipeline(unittest.TestCase):
                     if chunk.get("management_guide_id") == "cotton_organic_ipm"
                 ]
                 self.assertTrue(guide_chunks, "Cotton organic-IPM source should be retrieved")
-                self.assertTrue(
-                    any("TNAU Agritech Portal" in source for source in result.sources),
-                    "Source citations should be returned with the retrieved guidance",
-                )
+                if lang == "en":
+                    self.assertTrue(
+                        any("TNAU Agritech Portal" in source for source in result.sources),
+                        "Cited sources should be returned with the English demo answer",
+                    )
+                else:
+                    self.assertEqual(
+                        result.sources,
+                        [],
+                        "Do not show sources when demo mode replaces the answer with a language-unavailable notice",
+                    )
 
     def test_cotton_ipm_prompt_contains_citations_and_scope_caution(self):
         from src.rag_pipeline import _build_prompt
@@ -231,6 +239,118 @@ class TestRAGPipeline(unittest.TestCase):
         prompt = _build_prompt("How should I manage cotton pests organically?", guides)
         self.assertIn("agritech.tnau.ac.in", prompt)
         self.assertIn("certification standard", prompt.lower())
+
+    def test_requested_rag_queries_use_relevant_context_and_source_counts(self):
+        cases = [
+            {
+                "query": "How should I manage pests in cotton organically?",
+                "topic": "pest_disease",
+                "crop": "cotton",
+                "sources": 4,
+            },
+            {
+                "query": "What are the stages of the rice crop lifecycle?",
+                "topic": "crop_lifecycle",
+                "crop": "rice",
+                "sources": 1,
+            },
+            {
+                "query": "Electrical safety during irrigation with a water pump",
+                "topic": "safety",
+                "safety_id": "electrical_safety",
+                "sources": 1,
+            },
+            {
+                "query": "What are natural farming practices for soil health?",
+                "topic": "natural_farming",
+                "sources": 1,
+            },
+        ]
+
+        for case in cases:
+            with self.subTest(query=case["query"]):
+                result = self._run_rag(case["query"])
+                self.assertTrue(result.answer)
+                self.assertTrue(result.retrieved_chunks)
+                self.assertTrue(
+                    all(chunk.get("topic") == case["topic"] for chunk in result.retrieved_chunks),
+                    f"Unrelated topics retrieved: {[c.get('topic') for c in result.retrieved_chunks]}",
+                )
+                if "crop" in case:
+                    self.assertTrue(
+                        all(chunk.get("crop_id") == case["crop"] for chunk in result.retrieved_chunks),
+                        f"Unrelated crops retrieved: {[c.get('crop_id') for c in result.retrieved_chunks]}",
+                    )
+                if "safety_id" in case:
+                    self.assertTrue(result.has_safety_content)
+                    self.assertTrue(
+                        all(chunk.get("safety_id") == case["safety_id"] for chunk in result.retrieved_chunks)
+                    )
+                    self.assertIn("earthing", result.answer.lower())
+                    self.assertIn("safety", result.answer.lower())
+                if case["topic"] == "crop_lifecycle":
+                    self.assertGreaterEqual(len(result.retrieved_chunks), 10)
+                    self.assertIn("stage 1", result.answer.lower())
+                if case["topic"] == "natural_farming":
+                    self.assertIn("natural farming practice", result.answer.lower())
+
+                self.assertEqual(len(result.sources), case["sources"])
+                match = re.search(r"Grounded in (\d+) relevant knowledge excerpts", result.confidence)
+                self.assertIsNotNone(match, result.confidence)
+                self.assertEqual(int(match.group(1)), len(result.retrieved_chunks))
+                self.assertIn("local KVK", result.answer)
+
+    def test_granite_sources_show_only_numbered_excerpts_cited_in_answer(self):
+        from src.rag_pipeline import run_rag
+
+        chunks = [
+            {
+                "text": "First excerpt.",
+                "source": "first.json",
+                "topic": "crop_info",
+                "references": [{"title": "First source", "url": "https://example.org/first"}],
+            },
+            {
+                "text": "Second excerpt.",
+                "source": "second.json",
+                "topic": "crop_info",
+                "references": [{"title": "Second source", "url": "https://example.org/second"}],
+            },
+        ]
+
+        class StubRetriever:
+            @staticmethod
+            def is_safety_query(query):
+                return False
+
+            @staticmethod
+            def infer_topic_filter(query):
+                return None
+
+            @staticmethod
+            def search(**kwargs):
+                return chunks
+
+        class CitingGranite:
+            @staticmethod
+            def generate(prompt):
+                return "Use the relevant practice described here [2]."
+
+        with patch("src.rag_pipeline._get_llm_provider", return_value=(CitingGranite(), False)):
+            result = run_rag("How should I care for this crop?", StubRetriever())
+
+        self.assertEqual(
+            result.sources,
+            ["[Second source](https://example.org/second)"],
+        )
+
+    def test_assistant_styles_wrap_long_content_on_mobile_and_desktop(self):
+        from src.shared_utils import _CSS
+
+        self.assertIn('[data-testid="stChatMessageContent"]', _CSS)
+        self.assertIn("overflow-wrap: anywhere", _CSS)
+        self.assertIn('[data-testid="stCaptionContainer"]', _CSS)
+        self.assertIn("@media (max-width: 768px)", _CSS)
 
 
 class TestFarmingAdvisor(unittest.TestCase):

@@ -105,8 +105,9 @@ SUPPORTED_LANGUAGES: dict[str, str] = {
 # ── Safety hazard keywords (trigger safety card priority) ─────
 SAFETY_KEYWORDS: list[str] = [
     "cyclone", "hurricane", "storm", "flood", "waterlog",
-    "lightning", "thunder", "electric shock", "electrocute",
-    "motor accident", "pump accident",
+    "lightning", "thunder", "electric shock", "electrocute", "electrical safety",
+    "electrical hazard", "water pump", "pump motor", "water motor", "irrigation pump",
+    "motor accident", "pump accident", "rccb", "earthing", "electrician",
     "heatstroke", "heat stroke", "sunstroke",
     "pesticide poison", "chemical burn", "spray accident",
     "சூறாவளி", "வெள்ளம்", "மின்னல்", "வெப்ப அலை",

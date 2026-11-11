@@ -104,6 +104,58 @@ class TestRetrieval(unittest.TestCase):
             f"Expected natural_farming.json in top sources, got: {sources}"
         )
 
+    def test_domain_queries_do_not_mix_unrelated_topics_or_crops(self):
+        cases = [
+            (
+                "How should I manage pests in cotton organically?",
+                "pest_disease",
+                "cotton",
+            ),
+            (
+                "What are the stages of the rice crop lifecycle?",
+                "crop_lifecycle",
+                "rice",
+            ),
+            (
+                "Electrical safety during irrigation with a water pump",
+                "safety",
+                None,
+            ),
+            (
+                "What are natural farming practices for soil health?",
+                "natural_farming",
+                None,
+            ),
+        ]
+        for query, expected_topic, expected_crop in cases:
+            with self.subTest(query=query):
+                results = self.retriever.search(query, top_k=12)
+                self.assertTrue(results, f"Expected relevant matches for: {query}")
+                self.assertTrue(
+                    all(chunk.get("topic") == expected_topic for chunk in results),
+                    f"Unexpected topics for {query}: {[c.get('topic') for c in results]}",
+                )
+                if expected_crop:
+                    self.assertTrue(
+                        all(chunk.get("crop_id") == expected_crop for chunk in results),
+                        f"Unexpected crops for {query}: {[c.get('crop_id') for c in results]}",
+                    )
+                if expected_topic == "safety":
+                    self.assertTrue(
+                        all(chunk.get("safety_id") == "electrical_safety" for chunk in results),
+                        "Electrical queries should not include unrelated hazard advice",
+                    )
+
+    def test_strict_metadata_filters_never_fall_back_to_global_results(self):
+        self.assertEqual(
+            self.retriever.search(
+                "rice lifecycle stages",
+                crop_filter="unknown-crop",
+                topic_filter="crop_lifecycle",
+            ),
+            [],
+        )
+
     def test_search_market_info_not_in_knowledge(self):
         """Market prices are in market_service, not in the retrieval knowledge base."""
         results = self.retriever.search("live mandi price today onion nashik")

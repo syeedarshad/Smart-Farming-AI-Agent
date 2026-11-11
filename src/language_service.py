@@ -563,10 +563,10 @@ UI_LABELS: dict[str, dict[str, str]] = {
         "hi": "ज्ञान आधार से प्राप्त किया जा रहा है...",
     },
     "confidence_based": {
-        "en": "Based on {count} knowledge base sections.",
-        "ta": "அறிவுத் தளத்தின் {count} பகுதிகளை அடிப்படையாகக் கொண்டது.",
-        "te": "జ్ఞాన భాండాగారంలోని {count} విభాగాల ఆధారంగా ఇచ్చిన సమాధానం.",
-        "hi": "ज्ञान आधार के {count} अनुभागों पर आधारित उत्तर।",
+        "en": "Grounded in {count} relevant knowledge excerpts included in the answer context.",
+        "ta": "பதில் சூழலில் சேர்க்கப்பட்ட {count} தொடர்புடைய அறிவுத் தகவல் பகுதிகளை அடிப்படையாகக் கொண்டது.",
+        "te": "సమాధాన సందర్భంలో చేర్చిన {count} సంబంధిత జ్ఞాన భాగాల ఆధారంగా ఈ సమాధానం ఇచ్చబడింది.",
+        "hi": "यह उत्तर संदर्भ में शामिल ज्ञान आधार के {count} प्रासंगिक अंशों पर आधारित है।",
     },
     "confidence_no_match": {
         "en": "No matching information was found in the knowledge base.",

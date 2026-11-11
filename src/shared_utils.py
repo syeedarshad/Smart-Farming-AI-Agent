@@ -562,6 +562,40 @@ div[role="radiogroup"] label:hover {
     background: transparent !important;
     border: none !important;
     padding: 0.5rem 0 !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+}
+/* Keep long generated answers, links, and safety notices inside the viewport. */
+[data-testid="stChatMessageContent"],
+[data-testid="stChatMessageContent"] [data-testid="stMarkdownContainer"],
+[data-testid="stChatMessageContent"] p,
+[data-testid="stChatMessageContent"] li,
+[data-testid="stChatMessageContent"] a,
+[data-testid="stCaptionContainer"] {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+    word-break: normal !important;
+}
+[data-testid="stChatMessageContent"] pre,
+[data-testid="stChatMessageContent"] code {
+    max-width: 100% !important;
+    white-space: pre-wrap !important;
+    overflow-wrap: anywhere !important;
+}
+[data-testid="stChatMessageContent"] table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+}
+@media (max-width: 768px) {
+    [data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"]) {
+        max-width: 100% !important;
+    }
+    [data-testid="stChatMessageContent"] {
+        width: 100%;
+    }
 }
 /* User message bubble */
 [data-testid="stChatMessage"][data-testid*="user"],
