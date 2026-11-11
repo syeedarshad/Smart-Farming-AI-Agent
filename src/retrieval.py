@@ -14,6 +14,26 @@ from src.config import RAG_TOP_K, RAG_MIN_SCORE, SAFETY_KEYWORDS
 
 logger = logging.getLogger(__name__)
 
+# Small, explicit agriculture vocabulary bridges the four supported question
+# languages to the English source corpus. The original text remains intact for
+# Granite; only the local retrieval query is expanded.
+_QUERY_CONCEPTS = (
+    (("cotton", "cottons", "paruthi", "பருத்தி", "పత్తి", "कपास"), "cotton"),
+    (("pest", "pests", "insect", "insects", "பூச்சி", "பூச்சிகள்", "చీడపీడ", "పురుగ", "कीट"), "pest insect bollworm whitefly"),
+    (("organic", "natural", "இயற்கை", "செயற்கை இல்லா", "సేంద్రియ", "సేంద్రీయ", "జైవిక", "जैविक", "प्राकृतिक"), "organic natural biological IPM"),
+    (("manage", "management", "control", "கட்டுப்படுத்து", "கட்டுப்பாடு", "నిర్వహ", "నియంత్ర", "నివార", "प्रबंधन", "नियंत्र", "काबू"), "management control"),
+)
+
+
+def _expanded_retrieval_query(query: str) -> str:
+    """Add English search terms for known Tamil, Telugu and Hindi farm terms."""
+    folded = query.casefold()
+    additions = []
+    for aliases, expansion in _QUERY_CONCEPTS:
+        if any(alias.casefold() in folded for alias in aliases):
+            additions.extend(expansion.split())
+    return f"{query} {' '.join(dict.fromkeys(additions))}".strip() if additions else query
+
 
 class KnowledgeRetriever:
     """
@@ -77,6 +97,13 @@ class KnowledgeRetriever:
 
         query_vec = self._vectorizer.transform([query])
         scores = cosine_similarity(query_vec, self._matrix)[0]
+        expanded_query = _expanded_retrieval_query(query)
+        if expanded_query != query:
+            expanded_vec = self._vectorizer.transform([expanded_query])
+            expanded_scores = cosine_similarity(expanded_vec, self._matrix)[0]
+            # Preserve exact-language matches while allowing the mapped English
+            # terms to rescue multilingual queries against the English corpus.
+            scores = np.maximum(scores, expanded_scores)
 
         # Apply metadata pre-filters to narrow the candidate set
         candidate_indices = list(range(len(self._chunks)))

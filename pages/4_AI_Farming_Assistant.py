@@ -96,8 +96,12 @@ for chat in st.session_state.chat_history:
     with st.chat_message("assistant"):
         if chat.get("is_demo"):
             st.caption(get_label("demo_mode_notice", lang))
+            if chat.get("provider_diagnostic"):
+                st.caption(f"IBM connection detail: {chat['provider_diagnostic']}")
         elif chat.get("provider_error"):
             st.warning(get_label("granite_response_unavailable", lang))
+            if chat.get("provider_diagnostic"):
+                st.caption(f"IBM connection detail: {chat['provider_diagnostic']}")
         elif LLM_PROVIDER == "ibm_granite":
             st.success(get_label("granite_response_verified", lang))
         st.markdown(chat["answer"])
@@ -137,8 +141,12 @@ if question:
             )
         if result.is_demo:
             st.caption(get_label("demo_mode_notice", lang))
+            if result.provider_diagnostic:
+                st.caption(f"IBM connection detail: {result.provider_diagnostic}")
         elif result.provider_error:
             st.warning(get_label("granite_response_unavailable", lang))
+            if result.provider_diagnostic:
+                st.caption(f"IBM connection detail: {result.provider_diagnostic}")
         elif LLM_PROVIDER == "ibm_granite":
             st.success(get_label("granite_response_verified", lang))
         if result.has_safety_content:
@@ -158,6 +166,7 @@ if question:
         "confidence": result.confidence,
         "is_demo": result.is_demo,
         "provider_error": result.provider_error,
+        "provider_diagnostic": result.provider_diagnostic,
         "has_safety": result.has_safety_content,
     })
 

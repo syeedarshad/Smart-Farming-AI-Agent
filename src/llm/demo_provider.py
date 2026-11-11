@@ -29,6 +29,9 @@ class DemoProvider(LLMProvider):
     Suitable for testing the application without any API credentials.
     """
 
+    def __init__(self, diagnostic: str = "") -> None:
+        self.diagnostic = diagnostic
+
     @property
     def provider_name(self) -> str:
         return "Demo (Local Knowledge Base)"

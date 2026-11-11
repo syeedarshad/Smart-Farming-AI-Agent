@@ -193,6 +193,45 @@ class TestRAGPipeline(unittest.TestCase):
         self.assertIn("IBM Granite", result.answer)
         self.assertNotIn("DEMO MODE", result.answer)
 
+    def test_cotton_organic_ipm_retrieves_with_all_supported_languages(self):
+        questions = {
+            "en": "How should I manage pests in cotton organically?",
+            "ta": "பருத்தியில் பூச்சிகளை இயற்கை முறையில் எப்படிக் கட்டுப்படுத்துவது?",
+            "te": "పత్తిలో చీడపీడలను సేంద్రియంగా ఎలా నిర్వహించాలి?",
+            "hi": "कपास में कीटों का जैविक प्रबंधन कैसे करें?",
+        }
+        for lang, question in questions.items():
+            with self.subTest(language=lang):
+                result = self._run_rag(
+                    question,
+                    lang=lang,
+                    profile={"crop_id": "cotton"},
+                )
+                guide_chunks = [
+                    chunk for chunk in result.retrieved_chunks
+                    if chunk.get("management_guide_id") == "cotton_organic_ipm"
+                ]
+                self.assertTrue(guide_chunks, "Cotton organic-IPM source should be retrieved")
+                self.assertTrue(
+                    any("TNAU Agritech Portal" in source for source in result.sources),
+                    "Source citations should be returned with the retrieved guidance",
+                )
+
+    def test_cotton_ipm_prompt_contains_citations_and_scope_caution(self):
+        from src.rag_pipeline import _build_prompt
+
+        chunks = self.retriever.search(
+            "How should I manage pests in cotton organically?",
+            crop_filter="cotton",
+        )
+        guides = [
+            chunk for chunk in chunks
+            if chunk.get("management_guide_id") == "cotton_organic_ipm"
+        ]
+        prompt = _build_prompt("How should I manage cotton pests organically?", guides)
+        self.assertIn("agritech.tnau.ac.in", prompt)
+        self.assertIn("certification standard", prompt.lower())
+
 
 class TestFarmingAdvisor(unittest.TestCase):
     """Test the farming_advisor high-level API."""

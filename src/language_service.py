@@ -195,10 +195,10 @@ UI_LABELS: dict[str, dict[str, str]] = {
         "hi": "📖 स्रोत और संदर्भ",
     },
     "demo_mode_banner": {
-        "en": "🔧 **Demo Mode**: Responses come from the local knowledge base. IBM Granite integration is ready — add your watsonx.ai credentials in `.env` to activate it.",
-        "ta": "🔧 **டெமோ பயன்முறை**: பதில்கள் உள்ளூர் அறிவுத் தளத்திலிருந்து வருகின்றன. IBM Granite ஒருங்கிணைப்பு தயாராக உள்ளது — செயல்படுத்த `.env` இல் உங்கள் நற்சான்றிதழ்களை சேர்க்கவும்.",
-        "te": "🔧 **డెమో మోడ్**: సమాధానాలు స్థానిక జ్ఞాన బేస్ నుండి వస్తాయి. IBM Granite ఇంటిగ్రేషన్ సిద్ధంగా ఉంది — దాన్ని సక్రియం చేయడానికి `.env` లో మీ ఆధారాలు జోడించండి.",
-        "hi": "🔧 **डेमो मोड**: उत्तर स्थानीय ज्ञान आधार से आते हैं। IBM Granite एकीकरण तैयार है — इसे सक्रिय करने के लिए `.env` में अपनी क्रेडेंशियल जोड़ें।",
+        "en": "🔧 **Demo Mode**: Responses come from the local knowledge base. To enable live IBM Granite, add the required watsonx.ai values in Streamlit Community Cloud → App settings → Secrets, then restart the app.",
+        "ta": "🔧 **டெமோ பயன்முறை**: பதில்கள் உள்ளூர் அறிவுத் தளத்திலிருந்து வருகின்றன. IBM Granite-ஐ இயக்க, Streamlit Community Cloud → App settings → Secrets-இல் watsonx.ai விவரங்களைச் சேர்த்து, செயலியை மீண்டும் தொடங்கவும்.",
+        "te": "🔧 **డెమో మోడ్**: సమాధానాలు స్థానిక జ్ఞాన బేస్ నుండి వస్తాయి. IBM Granite‌ను ప్రారంభించడానికి Streamlit Community Cloud → App settings → Secrets‌లో watsonx.ai వివరాలు జోడించి, యాప్‌ను మళ్లీ ప్రారంభించండి.",
+        "hi": "🔧 **डेमो मोड**: उत्तर स्थानीय ज्ञान आधार से आते हैं। IBM Granite चालू करने के लिए Streamlit Community Cloud → App settings → Secrets में watsonx.ai विवरण जोड़ें और ऐप फिर से शुरू करें।",
     },
 
     # ── Farmer Profile ────────────────────────────────────────────────────────

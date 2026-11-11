@@ -5,6 +5,7 @@ Returns them as flat lists of text chunks with metadata for the retrieval engine
 """
 import json
 import logging
+import re
 from pathlib import Path
 from typing import Any
 
@@ -26,20 +27,43 @@ def _load_json(filename: str) -> Any:
 
 
 def _chunk_text(text: str, metadata: dict, chunk_size: int = RAG_CHUNK_SIZE) -> list[dict]:
-    """Split long text into overlapping chunks keeping metadata."""
+    """Split text on sentence/line boundaries and keep metadata with each chunk."""
     text = text.strip()
     if not text:
         return []
-    chunks = []
-    overlap = chunk_size // 4
-    start = 0
-    while start < len(text):
-        end = min(start + chunk_size, len(text))
-        chunk_text = text[start:end]
-        chunks.append({"text": chunk_text, **metadata})
-        if end == len(text):
-            break
-        start += chunk_size - overlap
+    segments = [part.strip() for part in re.split(r"(?<=[.!?])\s+|\n+", text) if part.strip()]
+    chunks: list[dict] = []
+    current: list[str] = []
+    current_size = 0
+
+    def flush() -> None:
+        nonlocal current, current_size
+        if current:
+            chunks.append({"text": " ".join(current), **metadata})
+            current = []
+            current_size = 0
+
+    for segment in segments:
+        # Long single sentences are split at word boundaries without cutting a word.
+        while len(segment) > chunk_size:
+            split_at = segment.rfind(" ", 0, chunk_size + 1)
+            if split_at < chunk_size // 2:
+                split_at = chunk_size
+            head, segment = segment[:split_at].strip(), segment[split_at:].strip()
+            if head:
+                if current and current_size + len(head) + 1 > chunk_size:
+                    flush()
+                current.append(head)
+                current_size += len(head) + 1
+                flush()
+
+        extra = len(segment) + (1 if current else 0)
+        if current and current_size + extra > chunk_size:
+            flush()
+        current.append(segment)
+        current_size += len(segment) + (1 if len(current) > 1 else 0)
+
+    flush()
     return chunks
 
 
@@ -208,16 +232,26 @@ def load_pest_management() -> list[dict]:
             "crop_id": "general",
         }))
 
+    crop_aliases = {}
+    for crop in _load_json("crops.json") or []:
+        crop_aliases[crop.get("id", "")] = [
+            value for value in crop.get("name", {}).values() if value
+        ]
+
     for crop_entry in data.get("crops", []):
         crop_id = crop_entry.get("crop_id", "unknown")
         crop_name = crop_entry.get("crop_name", crop_id)
+        local_names = crop_aliases.get(crop_id, [])
+        crop_heading = f"Crop: {crop_name}."
+        if local_names:
+            crop_heading += f" Local names: {', '.join(local_names)}."
         for pd in crop_entry.get("pests_diseases", []):
             pd_name = pd.get("name", "")
             pd_type = pd.get("type", "")
             symptoms = pd.get("symptoms", [])
             ipm = pd.get("ipm_approach", [])
             text_parts = [
-                f"Crop: {crop_name}",
+                crop_heading,
                 f"Pest/Disease: {pd_name} ({pd_type})",
                 f"Symptoms:",
             ]
@@ -238,6 +272,32 @@ def load_pest_management() -> list[dict]:
                 "pest_name": pd_name,
             }
             chunks.extend(_chunk_text(text, meta))
+
+        for guide in crop_entry.get("management_guides", []):
+            guide_name = guide.get("name", "Crop management guide")
+            text_parts = [
+                crop_heading,
+                f"Guide: {guide_name}",
+                "Search terms: " + ", ".join(guide.get("keywords", [])),
+                "Evidence-based approach:",
+                *[f"- {item}" for item in guide.get("approach", [])],
+            ]
+            references = guide.get("references", [])
+            if references:
+                text_parts.append("References:")
+                text_parts.extend(
+                    f"- {ref.get('title', 'Agricultural reference')}: {ref.get('url', '')}"
+                    for ref in references
+                )
+            chunks.extend(_chunk_text("\n".join(text_parts), {
+                "source": "pest_management.json",
+                "topic": "pest_disease",
+                "crop_id": crop_id,
+                "crop_name": crop_name,
+                "management_guide_id": guide.get("id", ""),
+                "management_guide": guide_name,
+                "references": references,
+            }))
     return chunks
 
 

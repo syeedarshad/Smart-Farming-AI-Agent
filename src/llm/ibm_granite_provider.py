@@ -25,6 +25,8 @@ To activate:
 from __future__ import annotations
 
 import logging
+import hashlib
+import re
 import threading
 import time
 from typing import Optional
@@ -49,6 +51,13 @@ _CONNECT_TIMEOUT = 10             # seconds for TCP connect
 _READ_TIMEOUT = 60                # seconds to wait for inference response
 
 
+def _safe_diagnostic(message: str) -> str:
+    """Remove credential-shaped values before messages reach logs or the UI."""
+    if IBM_WATSONX_API_KEY:
+        message = message.replace(IBM_WATSONX_API_KEY, "[redacted]")
+    return re.sub(r"(?i)Bearer\s+[^\s,;]+", "Bearer [redacted]", message)
+
+
 # ── IAM token cache (module-level, thread-safe) ───────────────────────────────
 
 class _IAMTokenCache:
@@ -58,14 +67,25 @@ class _IAMTokenCache:
         self._lock = threading.Lock()
         self._token: str = ""
         self._expires_at: float = 0.0
+        self._api_key_fingerprint: str = ""
 
     def get_token(self, api_key: str) -> str:
         """Return a valid token, refreshing if necessary."""
         with self._lock:
-            if self._token and time.time() < self._expires_at:
+            fingerprint = hashlib.sha256(api_key.encode("utf-8")).hexdigest()
+            if (self._token and fingerprint == self._api_key_fingerprint
+                    and time.time() < self._expires_at):
                 return self._token
             self._token, self._expires_at = self._fetch_token(api_key)
+            self._api_key_fingerprint = fingerprint
             return self._token
+
+    def invalidate(self) -> None:
+        """Force a new IAM exchange after a rejected/expired bearer token."""
+        with self._lock:
+            self._token = ""
+            self._expires_at = 0.0
+            self._api_key_fingerprint = ""
 
     @staticmethod
     def _fetch_token(api_key: str) -> tuple[str, float]:
@@ -84,12 +104,17 @@ class _IAMTokenCache:
         except requests.exceptions.ConnectionError as exc:
             raise RuntimeError(
                 f"Cannot reach IBM Cloud IAM ({IBM_CLOUD_IAM_URL}). "
-                f"Check your network connection. Detail: {exc}"
+                "Check DNS resolution, outbound network access and the IAM endpoint."
             ) from exc
         except requests.exceptions.Timeout:
             raise RuntimeError(
                 f"IBM Cloud IAM request timed out after {_READ_TIMEOUT}s."
             )
+        except requests.exceptions.RequestException as exc:
+            raise RuntimeError(
+                "IBM Cloud IAM request failed. Check network access and "
+                "IBM_CLOUD_IAM_URL."
+            ) from exc
 
         if resp.status_code == 400:
             raise RuntimeError(
@@ -109,22 +134,19 @@ class _IAMTokenCache:
         if not resp.ok:
             raise RuntimeError(
                 f"IBM Cloud IAM returned HTTP {resp.status_code}. "
-                f"Response: {resp.text[:200]}"
+                "Check the API key and IBM Cloud IAM availability."
             )
 
         try:
             data = resp.json()
         except ValueError as exc:
             raise RuntimeError(
-                f"IBM Cloud IAM returned non-JSON response: {resp.text[:200]}"
+                "IBM Cloud IAM returned an invalid response."
             ) from exc
 
         token: str = data.get("access_token", "")
         if not token:
-            raise RuntimeError(
-                "IBM Cloud IAM response did not contain an access_token. "
-                f"Keys returned: {list(data.keys())}"
-            )
+            raise RuntimeError("IBM Cloud IAM response did not contain an access token.")
 
         expires_in: int = int(data.get("expires_in", 3600))
         expiry = time.time() + expires_in - _TOKEN_REFRESH_BUFFER_SECS
@@ -170,41 +192,60 @@ def _call_watsonx_rest(prompt: str, max_tokens: int) -> str:
         "project_id": IBM_WATSONX_PROJECT_ID,
     }
 
-    try:
-        resp = requests.post(
+    def post_with_token(token: str):
+        return requests.post(
             url,
             headers={
-                "Authorization": f"Bearer {bearer}",
+                "Authorization": f"Bearer {token}",
                 "Content-Type": "application/json",
                 "Accept": "application/json",
             },
             json=payload,
             timeout=(_CONNECT_TIMEOUT, _READ_TIMEOUT),
         )
+
+    try:
+        resp = post_with_token(bearer)
+        if resp.status_code == 401:
+            _token_cache.invalidate()
+            resp = post_with_token(_token_cache.get_token(IBM_WATSONX_API_KEY))
     except requests.exceptions.ConnectionError as exc:
         raise RuntimeError(
             f"Cannot reach watsonx.ai endpoint ({base}). "
-            f"Check WATSONX_URL and your network. Detail: {exc}"
+            "Check DNS resolution, WATSONX_URL, region and outbound network access."
         ) from exc
-    except requests.exceptions.Timeout:
+    except requests.exceptions.Timeout as exc:
         raise RuntimeError(
             f"watsonx.ai inference request timed out after {_READ_TIMEOUT}s. "
-            "The model may be busy — try again shortly."
-        )
+            "The model may be busy; try again shortly."
+        ) from exc
+    except requests.exceptions.RequestException as exc:
+        raise RuntimeError(
+            "watsonx.ai inference request failed. Check the endpoint URL and network access."
+        ) from exc
 
     if resp.status_code == 401:
-        # Token may have just expired; invalidate cache and raise so caller can retry
-        _token_cache._token = ""
+        _token_cache.invalidate()
         raise RuntimeError(
-            "watsonx.ai returned HTTP 401. The IAM token may have expired. "
-            "Retry the request — a new token will be obtained automatically."
+            "watsonx.ai returned HTTP 401 after refreshing the IAM token. "
+            "Check that WATSONX_API_KEY is active and the endpoint region is correct."
+        )
+    if resp.status_code == 403:
+        raise RuntimeError(
+            "watsonx.ai returned HTTP 403. Confirm the IBM identity has access to "
+            "the project and that the project is in the configured region."
+        )
+    if resp.status_code == 400:
+        raise RuntimeError(
+            "watsonx.ai rejected the inference request (HTTP 400). Check the model ID, "
+            "project ID, region availability and inference parameters."
         )
     if resp.status_code == 404:
         raise RuntimeError(
             f"watsonx.ai returned HTTP 404. "
             f"Model '{IBM_GRANITE_MODEL_ID}' was not found under project "
             f"'{IBM_WATSONX_PROJECT_ID}'. "
-            "Verify GRANITE_MODEL_ID and WATSONX_PROJECT_ID in your .env file."
+            "Verify GRANITE_MODEL_ID, WATSONX_PROJECT_ID and the region endpoint."
         )
     if resp.status_code == 429:
         raise RuntimeError(
@@ -214,15 +255,13 @@ def _call_watsonx_rest(prompt: str, max_tokens: int) -> str:
     if not resp.ok:
         raise RuntimeError(
             f"watsonx.ai returned HTTP {resp.status_code}. "
-            f"Response: {resp.text[:300]}"
+            "Check the IBM service status and project access, then retry."
         )
 
     try:
         data = resp.json()
     except ValueError as exc:
-        raise RuntimeError(
-            f"watsonx.ai returned non-JSON response: {resp.text[:200]}"
-        ) from exc
+        raise RuntimeError("watsonx.ai returned an invalid response format.") from exc
 
     # Chat API response shape:
     #   {"choices": [{"message": {"role": "assistant", "content": "..."}}]}
@@ -283,7 +322,7 @@ class IBMGraniteProvider(LLMProvider):
         ):
             self._init_error = (
                 "WATSONX_API_KEY is not set. "
-                "Add it to your .env file to use IBM Granite."
+                "Add it to Streamlit Cloud Secrets or the process environment."
             )
             logger.warning("IBM Granite not configured: API key missing.")
             return
@@ -293,29 +332,35 @@ class IBMGraniteProvider(LLMProvider):
         ):
             self._init_error = (
                 "WATSONX_PROJECT_ID is not set. "
-                "Add it to your .env file to use IBM Granite."
+                "Add it to Streamlit Cloud Secrets or the process environment."
             )
             logger.warning("IBM Granite not configured: project ID missing.")
             return
 
-        # Try SDK path first
-        if self._try_init_sdk():
+        if not IBM_WATSONX_URL.startswith("https://"):
+            self._init_error = "WATSONX_URL must be an HTTPS watsonx.ai service endpoint."
+            logger.error("IBM Granite not configured: watsonx.ai URL must use HTTPS.")
             return
 
-        # Fall back to REST path — validate by getting a token
+        # Create the SDK client when available, but do not call it connected
+        # until IBM IAM has accepted the configured API key.
+        sdk_ready = self._try_init_sdk()
         try:
             _token_cache.get_token(IBM_WATSONX_API_KEY)
-            self._use_sdk = False
+            self._use_sdk = sdk_ready
             self._initialised = True
             logger.info(
-                "IBM Granite REST path ready. model=%s project=%s url=%s",
+                "IBM Granite %s path initialized; IAM authentication succeeded. "
+                "Model inference is verified only after a successful generate call. "
+                "model=%s project=%s url=%s",
+                "SDK" if self._use_sdk else "REST",
                 IBM_GRANITE_MODEL_ID,
                 IBM_WATSONX_PROJECT_ID,
                 IBM_WATSONX_URL,
             )
         except RuntimeError as exc:
             self._init_error = str(exc)
-            logger.error("IBM Granite REST init failed: %s", exc)
+            logger.error("IBM Granite authentication failed: %s", self._init_error)
 
     def _try_init_sdk(self) -> bool:
         """
@@ -343,12 +388,6 @@ class IBMGraniteProvider(LLMProvider):
                 },
             )
             self._use_sdk = True
-            self._initialised = True
-            logger.info(
-                "IBM Granite SDK path ready. model=%s project=%s",
-                IBM_GRANITE_MODEL_ID,
-                IBM_WATSONX_PROJECT_ID,
-            )
             return True
 
         except ImportError:
@@ -358,7 +397,10 @@ class IBMGraniteProvider(LLMProvider):
             return False
         except Exception as exc:
             # SDK init error doesn't block REST fallback
-            logger.warning("ibm-watsonx-ai SDK init failed (%s); trying REST.", exc)
+            logger.warning(
+                "ibm-watsonx-ai SDK initialization failed (%s); trying REST.",
+                type(exc).__name__,
+            )
             return False
 
     # ── LLMProvider interface ─────────────────────────────────────────────────
@@ -377,18 +419,16 @@ class IBMGraniteProvider(LLMProvider):
         if not self._initialised:
             msg = self._init_error or "IBM Granite provider is not initialised."
             logger.error("generate() called but provider not ready: %s", msg)
-            return (
-                f"⚠️ IBM Granite is not available: {msg}\n\n"
-                "Please check your .env configuration."
-            )
+            raise RuntimeError(f"IBM Granite is not available: {msg}")
 
         try:
             if self._use_sdk:
                 return self._generate_sdk(prompt, max_tokens)
             return self._generate_rest(prompt, max_tokens)
         except RuntimeError as exc:
-            logger.error("IBM Granite generation error: %s", exc)
-            raise
+            safe_message = _safe_diagnostic(str(exc))
+            logger.error("IBM Granite generation error: %s", safe_message)
+            raise RuntimeError(safe_message) from exc
         except Exception as exc:
             logger.error("Unexpected IBM Granite error: %s", exc)
             raise RuntimeError("Unexpected error while contacting IBM Granite.") from exc

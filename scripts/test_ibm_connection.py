@@ -8,10 +8,10 @@ Usage (from the smart-farming-ai/ project root):
 
 What this script does
 ─────────────────────
-1. Load credentials from the .env file in the project root.
+1. Load configuration from process environment or Streamlit Cloud secrets.
 2. Confirm all required variables are present (without printing their values).
 3. Request an IAM Bearer token from IBM Cloud.
-4. Send a minimal text-generation request to watsonx.ai (REST path).
+4. Send a minimal chat-completion request to watsonx.ai (REST path).
 5. If the ibm-watsonx-ai SDK is installed, run the same request via the SDK.
 6. Run a RAG pipeline smoke-test with one sample farming question.
 7. Print PASS / FAIL for each step.
@@ -52,13 +52,6 @@ SKIP = _yellow("SKIP")
 
 # ── Helper ────────────────────────────────────────────────────────────────────
 
-def _mask(value: str) -> str:
-    """Show only the first 4 and last 3 characters; mask the rest."""
-    if not value or len(value) < 10:
-        return "(empty)"
-    return f"{value[:4]}{'*' * (len(value) - 7)}{value[-3:]}"
-
-
 def _check(label: str, ok: bool, detail: str = "") -> bool:
     icon = PASS if ok else FAIL
     line = f"  {icon}  {label}"
@@ -68,10 +61,15 @@ def _check(label: str, ok: bool, detail: str = "") -> bool:
     return ok
 
 
+def _skip(label: str, detail: str) -> bool:
+    print(f"  {SKIP}  {label}  —  {detail}")
+    return True
+
+
 # ── Step 1: Load config ───────────────────────────────────────────────────────
 
 def step_load_config() -> bool:
-    print(_bold("\n[1] Load configuration from .env"))
+    print(_bold("\n[1] Load environment / Streamlit Cloud Secrets configuration"))
     try:
         from src.config import (
             IBM_WATSONX_API_KEY,
@@ -85,7 +83,7 @@ def step_load_config() -> bool:
             LLM_PROVIDER,
         )
     except Exception as exc:
-        return _check("Import src.config", False, str(exc))
+        return _check("Import src.config", False, type(exc).__name__)
 
     all_ok = True
     all_ok &= _check("APP_TITLE loaded",    bool(APP_TITLE),   APP_TITLE)
@@ -96,23 +94,16 @@ def step_load_config() -> bool:
     all_ok &= _check("GRANITE_MODEL_ID",    bool(IBM_GRANITE_MODEL_ID), IBM_GRANITE_MODEL_ID)
     all_ok &= _check("IBM_CLOUD_IAM_URL",   bool(IBM_CLOUD_IAM_URL), IBM_CLOUD_IAM_URL)
 
-    # Show masked credential presence — never show actual values
     key_ok = bool(IBM_WATSONX_API_KEY) and IBM_WATSONX_API_KEY not in (
         "your_api_key_here", "YOUR_API_KEY_HERE", ""
     )
     proj_ok = bool(IBM_WATSONX_PROJECT_ID) and IBM_WATSONX_PROJECT_ID not in (
         "your_project_id_here", "YOUR_PROJECT_ID_HERE", ""
     )
-    all_ok &= _check(
-        "WATSONX_API_KEY present",
-        key_ok,
-        f"length={len(IBM_WATSONX_API_KEY)} starts={_mask(IBM_WATSONX_API_KEY)}" if key_ok else "NOT SET",
-    )
-    all_ok &= _check(
-        "WATSONX_PROJECT_ID present",
-        proj_ok,
-        f"length={len(IBM_WATSONX_PROJECT_ID)} starts={_mask(IBM_WATSONX_PROJECT_ID)}" if proj_ok else "NOT SET",
-    )
+    if key_ok and proj_ok:
+        all_ok &= _check("IBM credentials present", True)
+    else:
+        _skip("IBM credentials", "API key or project ID is not configured; live checks will be skipped")
     return all_ok
 
 
@@ -125,7 +116,7 @@ def step_iam_token() -> bool:
         from src.llm.ibm_granite_provider import _IAMTokenCache
 
         if not IBM_WATSONX_API_KEY or IBM_WATSONX_API_KEY == "your_api_key_here":
-            return _check("IAM token request", False, "WATSONX_API_KEY not configured — skipping")
+            return _skip("IAM token request", "WATSONX_API_KEY is not configured")
 
         cache = _IAMTokenCache()
         t0 = time.time()
@@ -141,7 +132,7 @@ def step_iam_token() -> bool:
     except RuntimeError as exc:
         return _check("IAM token request", False, str(exc))
     except Exception as exc:
-        return _check("IAM token request", False, f"Unexpected error: {exc}")
+        return _check("IAM token request", False, f"Unexpected error ({type(exc).__name__})")
 
 
 # ── Step 3: watsonx.ai REST inference ────────────────────────────────────────
@@ -151,9 +142,9 @@ def step_rest_inference() -> bool:
     try:
         from src.config import IBM_WATSONX_API_KEY, IBM_WATSONX_PROJECT_ID
 
-        if not IBM_WATSONX_API_KEY or IBM_WATSONX_API_KEY == "your_api_key_here":
-            print(f"  {SKIP}  Credentials not configured — skipping inference test")
-            return True  # not a failure — just not configured
+        if (not IBM_WATSONX_API_KEY or not IBM_WATSONX_PROJECT_ID
+                or IBM_WATSONX_API_KEY == "your_api_key_here"):
+            return _skip("REST inference", "IBM credentials are not configured")
 
         from src.llm.ibm_granite_provider import _call_watsonx_rest
 
@@ -177,7 +168,7 @@ def step_rest_inference() -> bool:
     except RuntimeError as exc:
         return _check("REST inference", False, str(exc))
     except Exception as exc:
-        return _check("REST inference", False, f"Unexpected error: {exc}")
+        return _check("REST inference", False, f"Unexpected error ({type(exc).__name__})")
 
 
 # ── Step 4: SDK inference (optional) ─────────────────────────────────────────
@@ -190,11 +181,11 @@ def step_sdk_inference() -> bool:
             print(f"  {SKIP}  ibm-watsonx-ai not installed — SDK path not tested")
             return True
 
-        from src.config import IBM_WATSONX_API_KEY
+        from src.config import IBM_WATSONX_API_KEY, IBM_WATSONX_PROJECT_ID
 
-        if not IBM_WATSONX_API_KEY or IBM_WATSONX_API_KEY == "your_api_key_here":
-            print(f"  {SKIP}  Credentials not configured — skipping SDK test")
-            return True
+        if (not IBM_WATSONX_API_KEY or not IBM_WATSONX_PROJECT_ID
+                or IBM_WATSONX_API_KEY == "your_api_key_here"):
+            return _skip("SDK inference", "IBM credentials are not configured")
 
         from src.llm.ibm_granite_provider import IBMGraniteProvider
 
@@ -223,7 +214,7 @@ def step_sdk_inference() -> bool:
         return ok
 
     except Exception as exc:
-        return _check("SDK inference", False, f"Unexpected error: {exc}")
+        return _check("SDK inference", False, f"Unexpected error ({type(exc).__name__})")
 
 
 # ── Step 5: RAG pipeline smoke-test ──────────────────────────────────────────
@@ -263,13 +254,13 @@ def step_rag_pipeline() -> bool:
             print("  Granite inference failed; no demo response was substituted.")
         elif response.is_demo:
             print(f"  Note: Demo mode active (LLM_PROVIDER={LLM_PROVIDER}). "
-                  "Set LLM_PROVIDER=ibm_granite in .env to test real Granite responses.")
+                  "Add the IBM settings to Streamlit Cloud Secrets or the process environment to test live inference.")
         else:
             print(f"  IBM Granite is providing RAG answers.")
         return answer_ok
 
     except Exception as exc:
-        return _check("RAG pipeline", False, f"Unexpected error: {exc}")
+        return _check("RAG pipeline", False, f"Unexpected error ({type(exc).__name__})")
 
 
 # ── Step 6: Streamlit port check ─────────────────────────────────────────────
@@ -285,7 +276,7 @@ def step_port_check() -> bool:
             "matches Streamlit default" if ok else "non-standard port — update your run command",
         )
     except Exception as exc:
-        return _check("APP_PORT check", False, str(exc))
+        return _check("APP_PORT check", False, type(exc).__name__)
 
 
 # ── Main ──────────────────────────────────────────────────────────────────────
@@ -313,11 +304,10 @@ def main() -> None:
     if passed < total:
         print(
             "\nTo fix failures:\n"
-            "  1. Copy .env.example to .env and fill in WATSONX_API_KEY and\n"
-            "     WATSONX_PROJECT_ID with your real IBM Cloud credentials.\n"
-            "  2. Set LLM_PROVIDER=ibm_granite in .env.\n"
-            "  3. Install the SDK (optional):  pip install ibm-watsonx-ai\n"
-            "  4. Re-run this script.\n"
+            "  1. Add LLM_PROVIDER, WATSONX_API_KEY and WATSONX_PROJECT_ID to\n"
+        "     Streamlit Community Cloud App settings -> Secrets.\n"
+            "  2. Check WATSONX_URL, GRANITE_MODEL_ID and IBM project access.\n"
+            "  3. Re-run this script from the app project root.\n"
         )
     sys.exit(0 if passed == total else 1)
 

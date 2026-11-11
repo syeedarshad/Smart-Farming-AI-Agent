@@ -31,6 +31,7 @@ class RAGResponse:
     provider_error: bool = False
     has_safety_content: bool = False
     language_code: str = "en"
+    provider_diagnostic: str = ""
 
 
 def _get_llm_provider():
@@ -50,7 +51,7 @@ def _get_llm_provider():
                 provider._init_error,
             )
             from src.llm.demo_provider import DemoProvider
-            return DemoProvider(), True
+            return DemoProvider(diagnostic=provider._init_error), True
         return provider, False
     else:
         from src.llm.demo_provider import DemoProvider
@@ -78,6 +79,13 @@ def _build_prompt(
                 label += f" | Crop: {crop}"
             if topic:
                 label += f" | Topic: {topic}"
+            references = chunk.get("references", [])
+            if references:
+                citation_text = "; ".join(
+                    f"{ref.get('title', 'Reference')} ({ref.get('url', '')})"
+                    for ref in references
+                )
+                label += f" | References: {citation_text}"
             context_parts.append(f"{label}\n{chunk['text']}")
         context_text = "\n\n".join(context_parts)
     else:
@@ -192,6 +200,7 @@ def run_rag(
 
     # ── Step 4: Call LLM ──────────────────────────────────────────────────────
     provider, is_demo = _get_llm_provider()
+    provider_diagnostic = getattr(provider, "diagnostic", "")
 
     provider_error = False
     try:
@@ -201,6 +210,7 @@ def run_rag(
     except Exception as exc:
         logger.error("LLM generate() error: %s", exc)
         provider_error = True
+        provider_diagnostic = str(exc)
         raw_answer = (
             get_label("granite_response_unavailable", lang_code)
             if not is_demo else
@@ -214,11 +224,18 @@ def run_rag(
         raw_answer = get_label("demo_language_unavailable", lang_code)
 
     # ── Step 6: Collect sources ───────────────────────────────────────────────
-    sources = list({
-        c.get("source", "knowledge base")
-        for c in final_chunks
-        if c.get("source")
-    })
+    source_items: dict[str, str] = {}
+    for chunk in final_chunks:
+        references = chunk.get("references", [])
+        if references:
+            for reference in references:
+                title = reference.get("title", "Agricultural source")
+                url = reference.get("url", "")
+                key = url or title
+                source_items[key] = f"[{title}]({url})" if url else title
+        elif chunk.get("source"):
+            source_items[chunk["source"]] = chunk["source"]
+    sources = sorted(source_items.values())
 
     # ── Step 7: Confidence note ───────────────────────────────────────────────
     if not final_chunks:
@@ -237,4 +254,5 @@ def run_rag(
         provider_error=provider_error,
         has_safety_content=is_safety,
         language_code=lang_code,
+        provider_diagnostic=provider_diagnostic,
     )

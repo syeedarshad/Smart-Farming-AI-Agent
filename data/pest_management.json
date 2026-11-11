@@ -136,6 +136,42 @@
           "when_to_seek_expert": "If more than 20% of plants show CLCuV symptoms, consult agricultural officer. Entire crop may need to be destroyed to protect neighbours.",
           "chemical_guidance_note": "Neonicotinoid insecticides (imidacloprid as seed treatment) reduce early whitefly infestation. Foliar sprays: consult label. Resistance to neonicotinoids is emerging in some whitefly populations."
         }
+      ],
+      "management_guides": [
+        {
+          "id": "cotton_organic_ipm",
+          "name": "Organic and integrated pest management in cotton",
+          "keywords": [
+            "cotton pests organically",
+            "organic cotton pest control",
+            "organic cotton IPM",
+            "பருத்தி பூச்சி இயற்கை கட்டுப்பாடு",
+            "పత్తి సేంద్రియ చీడపీడల నిర్వహణ",
+            "कपास जैविक कीट प्रबंधन"
+          ],
+          "approach": [
+            "Scout cotton regularly and identify the pest and beneficial insects before acting. TNAU advises regular field monitoring and trap-based monitoring for bollworms and whitefly; use traps to monitor trends, not as the only control measure.",
+            "Use cultural measures that fit the local farm: rotate crops, avoid continuous cotton and ratooning, remove infested squares, bolls and crop residues, and consider locally suitable intercrops or trap crops such as cowpea, maize, castor, marigold or okra.",
+            "Conserve natural enemies. TNAU organic cotton guidance describes predators such as Chrysoperla and egg parasitoids such as Trichogramma, plus appropriate NPV and Bt biological products. Use only products allowed by the applicable organic certification and current local guidance.",
+            "Neem-based botanical products are included in TNAU cotton IPM guidance. Use only a correctly labelled, permitted product and follow its label; do not assume every neem formulation is approved for certified organic production.",
+            "ICAR's 2025 Kharif advisory for the Marathwada region includes crop rotation, intercrops and trap crops, botanical or biopesticide options, 5% neem seed kernel extract at 60 days after sowing, and pheromone trapping for pink bollworm. This is a regional seasonal advisory; confirm current timing and suitability with the local KVK or agriculture department.",
+            "For certified organic cotton, check the current certification standard before applying any input. If damage is spreading or the pest is uncertain, contact a local KVK or agricultural officer rather than guessing a treatment."
+          ],
+          "references": [
+            {
+              "title": "TNAU Agritech Portal — Organic Farming: Pest Management (Cotton)",
+              "url": "https://agritech.tnau.ac.in/org_farm/orgfarm_agripest_cotton.html"
+            },
+            {
+              "title": "TNAU Agritech Portal — IPM: Cotton",
+              "url": "https://agritech.tnau.ac.in/crop_protection/crop_prot_ipm_cotton.html"
+            },
+            {
+              "title": "ICAR Kharif Agro-Advisory 2025 — Cotton, Marathwada region",
+              "url": "https://www.icar.org.in/sites/default/files/Circulars/ICAR-En-Kharif-Agro-Advisories-for-Farmers-2025.pdf"
+            }
+          ]
+        }
       ]
     },
     {
